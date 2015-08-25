@@ -1,5 +1,25 @@
 # The client-side of hive.js
 
+## page.js context
+
+### /documents/:id
+#### ctx.access_token
+the access token used to authenticate api requests and the shoe stream. Set by hive-ui-editor.
+#### ctx.client
+An instance of hive-client-rest-api. Set by hive-ui-editor.
+#### ctx.stream
+An instance of the shoe stream created by hive-client-shoe. Set by hive-ui-editor.
+#### ctx.models
+an object containing the Backbone models as provided by hive-ui-models. Set by hive-ui-editor.
+#### ctx.user
+An instance of ctx.models.user, a Backbone.Model representing the current user. Set by hive-ui-editor.
+#### ctx.document
+An instance of ctx.models.document, a Backbone.Model representing the current document. Set by hive-ui-editor.
+#### ctx.broadcast
+An instance of MuxDmx. Use `ctx.broadcast.createDuplexStream(id:Buffer)` to access your channel (you need to register your channel on he server with the broadcast provider). Set by hive-ui-editor.
+#### ctx.editableDocument
+An instance of gulf.EditableDocument. See the gulf documentation for API and events. Depending on the editor there may be additional interfaces available, check the editor documentation. Set by hive-ui-editor.
+
 ## Client-side providers
 A component can register files to be loaded by the client-side loader with the `assets` provider. (Don't worry, hive-assets is a noop on the client-side, so simple components will work there, too.) Those files need to export a setup function and may consume and/or provide providers, like server-side components.
 
@@ -16,7 +36,7 @@ A page.js instance. See [visionmedia/page.js](https://github.com/visionmedia/pag
 Default implementation is hive-ui-auth.
 
 #### auth.registerAuthenticationProvider(method:String, provider:Object)
-Registers a client-side authentication method, where `method` is the name of the authentication method, e.g. `"github"`, and provider is an object that looks as follows:
+Registers a client-side authentication method, where `method` is the name of the authentication method, e.g. `"github"`, and `provider` is an object that looks as follows:
 
 ```js
 var provider = {
@@ -28,6 +48,8 @@ var provider = {
  * `silent` should be a function that somehow figures out the users credentials for this authentication method silently, e.g. by reading a cookie or retrieving an OAuth token from the current URL. If that is not possible just return `undefined` otherwise return the credentials.
  * `ask` is called if silent authentication fails and the user has chosen an authentication method to identify themselves with. This should ask the user for their credentials or otherwise redirect them to a site that takes their credentials, e.g. an OAuth endpoint.
 * `description` is used to display the user more information about the authentication methods they can choose from. A short sentence should be enough, e.g. `"Login with your account at github.com"`.
+
+You don't need to implement both silent and ask, if that doesn't suit your use case.
 
 #### auth.authenticate*()
 tries to authenticate the user with the registered authentication providers using silent authentication first and if that fails asks the user for a method and their credentials. It returns an access token that can be used e.g. with hive-api-client or hive-shoe-client.
