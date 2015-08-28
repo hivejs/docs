@@ -18,7 +18,7 @@ An instance of ctx.models.document, a Backbone.Model representing the current do
 #### ctx.broadcast
 An instance of MuxDmx. Use `ctx.broadcast.createDuplexStream(id:Buffer)` to access your channel (you need to register your channel on he server with the broadcast provider). Set by hive-ui-editor.
 #### ctx.editableDocument
-An instance of gulf.EditableDocument. See the gulf documentation for API and events. Depending on the editor there may be additional interfaces available, check the editor documentation. Set by hive-ui-editor.
+An instance of gulf.EditableDocument. See the [gulf documentation](https://github.com/marcelklehr/gulf#class-gulfdocument) for API and events. Depending on the editor there may be additional interfaces available, check the editor documentation. Set by hive-ui-editor.
 
 ## Client-side providers
 A component can register files to be loaded by the client-side loader with the `assets` provider. (Don't worry, hive-assets is a noop on the client-side, so simple components will work there, too.) Those files need to export a setup function and may consume and/or provide providers, like server-side components.
