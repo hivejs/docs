@@ -24,12 +24,16 @@ Hive.js is scalable. This means that you can spin up any number of workers to ha
  * hive-broadcast-memory (simple stub that only works when you have just one worker)
  * hive-broadcast-smokesignal (sets up a peer-to-peer network through which the workers will communicate)
 
+By default hive-init(1) installs hive-broadcast-memory, so if you want some other transport you need to uninstall it first and then install the new transport with `npm install hive-broadcast-<name>`, where `<name>` is the name of the transport.
+
 ## Choose one or more editors
 Currently available editors are
 
  * hive-editor-text
  * hive-editor-html
  * hive-editor-svg
+
+You can install them by running `npm install hive-editor-<name>`, where `<name>` is the name of the editor.
 
 ## Adjust the settings
 These are just the mandatory settings plus the settings for hive-broadcast-smokesignal.
@@ -42,7 +46,7 @@ These are just the mandatory settings plus the settings for hive-broadcast-smoke
     "adapters": [
       "sails-memory"
     ]
-  , "connections": { 
+  , "connections": {
       "default": { "adapter": "sails-memory" }
     }
   }
