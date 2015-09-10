@@ -14,6 +14,7 @@ Currently the following topics are available:
  * Authentication
  * Using the REST API interface
  * Using the shoe interface
+
 ### Core / plugins
  * [Getting started](getting-started.md)
  * Data model
