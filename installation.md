@@ -29,11 +29,11 @@ By default hive-init(1) installs hive-broadcast-memory, so if you want some othe
 ## Choose one or more editors
 Currently available editors are
 
- * hive-editor-text
- * hive-editor-html
- * hive-editor-svg
+ * `hive-editor-text-textarea`: Collaborate on plain text using a simple textarea.
+ * `hive-editor-html-ckeditor`: Collaborate on HTML documents using [ckeditor](http://ckeditor.com/).
+ * `hive-editor-svg-method-draw`: Collaborate on SVG images using [MethodDraw](https://github.com/duopixel/Method-Draw)
 
-You can install them by running `npm install hive-editor-<name>`, where `<name>` is the name of the editor.
+You can install each of them by running `npm install hive-editor-<name>`, where `<name>` is the name of the editor.
 
 ## Adjust the settings
 These are just the mandatory settings plus the settings for hive-broadcast-smokesignal.
