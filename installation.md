@@ -1,8 +1,8 @@
 # Installation
 ## Pre-requisites
 To install hive.js on your machine you'll need to have installed the following:
- * [io.js](http://iojs.org)
- * [npm](http://npmjs.org) (usually bundled with io.js)
+ * [node.js](http://nodejs.org) v4
+ * [npm](http://npmjs.org) (usually bundled with node.js)
 
 If you have installed the pre-requisites, install the hive command globally with the following command:
 ```
