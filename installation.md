@@ -30,6 +30,7 @@ By default hive-init(1) installs hive-broadcast-memory, so if you want some othe
 Currently available editors are
 
  * `hive-editor-text-textarea`: Collaborate on plain text using a simple textarea.
+ * `hive-editor-text-codemirror`: Collaborate on plain text using the [codemirror](http://codemirror.net) code editor.
  * `hive-editor-html-ckeditor`: Collaborate on HTML documents using [ckeditor](http://ckeditor.com/).
  * `hive-editor-svg-method-draw`: Collaborate on SVG images using [MethodDraw](https://github.com/duopixel/Method-Draw)
 
