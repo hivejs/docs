@@ -65,8 +65,14 @@ The backbone instance used by the models. It is recommended that you use this in
 ### editor
 The default implementation is hive-ui-editor.
 
-#### editor.registerEditor(type:String, editorSetup:Function*)
-Registers an editor for a given ot type. The `editorSetup` function should load the editor and append any DOM elements as children of `#editor`. It should return a gulf Document.
+#### editor.registerEditor(name:String, type:String, description:String, editoreditorSetup:Function*(editor:Element))
+Registers an editor called `name` for a given ot `type` with a `description`. The `editorSetup` function should load the editor and append any DOM elements as children of the element passed as `editor`. It should return a gulf Document. Editor names must be unique and are used for displaying options together with `description`s.
+
+### editor.createEditor(name:String, el:Element)
+Creates an editor by `name` inside `el`.
+
+### editor.askForEditorWithType(type:String)
+Returns the editor name if only one is available for the passed `type`. If more are available, adds a dialog box to `document.body` which allows the user to choose between the available ones and returns the editors's name.
 
 ## Client-side hooks
 
