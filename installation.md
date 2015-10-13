@@ -78,3 +78,13 @@ These are just the mandatory settings plus the settings for hive-broadcast-smoke
   }
 }
 ```
+
+## Run it
+Now you can start hive.js by running
+
+```
+$ hive -s http -s queue
+```
+(This will start a hive process with the http server and the queue service. When spinning up additional workers, you shouldn't start the queue service, so leave out `-s queue` in that case.)
+
+Now check out `http://localhost:1235` in your browser.
