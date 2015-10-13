@@ -1,4 +1,6 @@
 # Installation
+*First up, a warning: This is alpha software. Hive will probably not work for you yet. There are unresolved issues in some of its dependencies and you'll have to write your own auth provider if you don't want to use hive-auth-github.*
+
 ## Pre-requisites
 To install hive.js on your machine you'll need to have installed the following:
  * [node.js](http://nodejs.org) v4
