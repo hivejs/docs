@@ -9,5 +9,5 @@
    * Authentication
    * Interface: REST API
    * Interface: Shoe/Sockjs
-* Developing components / plugins
+* [Developing components / plugins](developing_components__plugins/README.md)
 
