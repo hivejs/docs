@@ -5,4 +5,5 @@
    * [Installation](setup/installation.md)
    * Installing plugins
 * [Developing Peripherals](developing_peripherals/README.md)
+   * Data model
 
