@@ -1,6 +1,6 @@
 # Summary
 
 * Installation
-* Installing plugins
+* [Installing plugins](installation_setup/installing_plugins.md)
 * Installation and setup
 
