@@ -8,4 +8,5 @@
    * Data model
    * Authentication
    * Interface: REST API
+   * Interface: Shoe/Sockjs
 
