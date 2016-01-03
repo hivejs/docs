@@ -1,7 +1,7 @@
 # Hive.js Documentation
 Hello stranger! This repository will familiarize you with the setup of Hive.js as well as its internals.
 
-Currently the following topics are available:
+Checkout the [table of contents](SUMMARY.md).
 
 ## Installation and setup
  * [Installation](installation.md)
