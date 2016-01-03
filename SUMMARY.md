@@ -4,4 +4,5 @@
 * [Setup](setup/README.md)
    * [Installation](setup/installation.md)
    * Installing plugins
+* Developing Peripherals
 
