@@ -1,7 +1,6 @@
 # Summary
 
 * [Introduction](README.md)
-* [Setup](setup/installation.md)
-   * [Installation](setup/installation.md)
+* [Setup](setup/README.md)
    * Installing plugins
 
