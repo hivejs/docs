@@ -7,4 +7,5 @@
 * [Developing Peripherals](developing_peripherals/README.md)
    * Data model
    * Authentication
+   * Interface: REST API
 
