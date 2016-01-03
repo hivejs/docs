@@ -1,4 +1,5 @@
 # Summary
 
-* [Installation](./installation.md)
+* Installation
+* Installing plugins
 
