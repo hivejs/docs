@@ -11,4 +11,5 @@
    * Interface: Shoe/Sockjs
 * [Developing components / plugins](developing_components__plugins/README.md)
    * Server-side interfaces
+   * Client-side interfaces
 
