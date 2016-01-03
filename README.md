@@ -3,25 +3,7 @@ Hello stranger! This repository will familiarize you with the setup of Hive.js a
 
 Checkout the [table of contents](SUMMARY.md).
 
-## Installation and setup
- * [Installation](installation.md)
- * Installing plugins
-
-## Development
-
-### Peripherals
- * Data model
- * Authentication
- * Using the REST API interface
- * Using the shoe interface
-
-### Core / plugins
- * [Getting started](getting-started.md)
- * Data model
- * [server-side interfaces](server-side.md)
- * [client-side interfaces](client-side.md)
-
-# Gettings started
+# Getting started
 
 ## What is a hive instance?
 Similar to a git repository, a hive instance is simply a folder where your instance lives:
