@@ -9,4 +9,5 @@
    * Authentication
    * Interface: REST API
    * Interface: Shoe/Sockjs
+* Developing components / plugins
 
