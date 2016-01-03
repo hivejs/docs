@@ -10,6 +10,6 @@
    * Interface: REST API
    * Interface: Shoe/Sockjs
 * [Developing components / plugins](developing_components__plugins/README.md)
-   * Server-side interfaces
+   * [Server-side interfaces](developing_components__plugins/server-side_interfaces.md)
    * [Client-side interfaces](developing_components__plugins/client-side_interfaces.md)
 
