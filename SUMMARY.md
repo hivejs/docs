@@ -6,4 +6,5 @@
    * Installing plugins
 * [Developing Peripherals](developing_peripherals/README.md)
    * Data model
+   * Authentication
 
