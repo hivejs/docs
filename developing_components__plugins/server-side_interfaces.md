@@ -2,22 +2,22 @@
 
 ## Server-side Providers
 
-### assets
+### ui
 Default implementation is hive-assets.
 
-#### assets.registerModule(file:String)
+#### ui.registerModule(file:String)
 register a file that must adhere to the component definition spec and will be loaded on the client-side.
 
-#### assets.registerStaticDir(dir:String, [options])
+#### ui.registerStaticDir(dir:String, [options])
 register `dir`, a sub-directory of your component, which will be available at `/static/hive-component-name/path/to/dir`. The `options` will be passed to koa-static-cache.
 
-#### assets.bundle*()
+#### ui.bundle*()
 returns the bundled client-side javascript.
 
-#### assets.bootstrapMiddleware()
+#### ui.bootstrapMiddleware()
 returns koa middleware which sends the bootstrapping html of the web ui
 
-#### assets.getBootstrapCode()
+#### ui.getBootstrapCode()
 returns the bootstrapping html of the web ui.
 
 ### auth
