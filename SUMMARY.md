@@ -1,6 +1,6 @@
 # Summary
 
 * Installation
-* Setup
+* [Setup](setup/installation.md)
    * Installation
 
