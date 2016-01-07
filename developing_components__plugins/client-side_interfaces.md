@@ -1,7 +1,135 @@
 # Client-side interfaces
 
 ## Redux store
+The default Hive.js UI is based on redux. If you're not familiar with redux, head over to [the redux docs](http://redux.js.org/).
 
+tl;dr: Redux is a framework making use of functional reactive programming techniques. It features a central state atom (a simple object), that can be modified by dispatching actions. Reducer functions take state atom and an action and spit out the new state. You can subscribe to changes to the state atom and render the interface components accordingly.
+
+Since the state atom is central to everything you will do on the client-side, we have a snapshot for you to inspect right here, commented of course:
+
+```js
+{
+  /**
+   * The current route
+   * modify with
+   *  * ui.action_route(path:String):ROUTE
+   *  * ui.action_loadState(state:Object):LOAD_STATE
+   */
+  router: '/documents/1'
+  
+  /**
+   * Modify with
+   * * session.action_chooseAuthMethod(authMethod):SESSION_CHOOSE_AUTH_METHOD
+   * * session.action_loggingIn():SESSION_LOGGING_IN
+   * * session.action_login(credentials):SESSION_LOGIN
+   */
+, session: {
+    /**
+     * if true, this will cause a message to be shown in the
+     * choose-auth-dialog
+     */
+    authFailed: false
+    
+    /**
+     * The auth method the user chose, 'token' if the default
+     * silent token cookie authentication is used
+     */
+  , authMethod: 'token'
+
+    /**
+     * `True` while authentication is running - a loading indicator
+     * will be displayed
+     */
+  , logginIn: false
+  
+    /**
+     * The grant response by the `/token` endpoint
+     */
+  , grant: {
+      access_token: 'DIOJgUZGVGHHZTU...'
+    , token_type: 'bearer'
+    }
+    
+    /**
+     * The user object of the currently logged-in user
+     * if not logged in, this will be null
+     */
+  , user: {
+      ...
+    }
+  }
+  /**
+   * Modified by
+   * * .. the API of the `editor`component has not been finalized yet
+   */
+, editor: {
+    /**
+     * When the user navigates to an editor, this will be true
+     */
+    active: true
+    
+    /**
+     * `True` if there was an error loading the document object
+     */
+  , notFound: null
+    
+    /**
+     * the document object of teh document being (or about to be) edited 
+     */
+  , document: {
+      ...
+    }
+    
+    /**
+     * The ID of the registered editor chosen (either explicitly by the
+     * user or implicitly)
+     */
+  , editor: "CodeMirror"
+  
+    /**
+     * `True` if there was an error loading the editor instance
+     */
+  , loadError: null
+  }
+
+  /**
+   * There is currently no way to interface with this component
+   * It's read-only-ish. You can modify its state manually, though.
+   */
+, editorTextCodemirror: {
+    lineNumbers: false
+  , mode: 'javascript'
+  }
+
+  /**
+   * Modified by 
+   * * oauth.action_activate():OAUTH_ACTIVATE
+   * * oauth.action_grant(granted:Bool):OAUTH_GRANT
+   */
+, oauth: {
+    /**
+     * `True` if the oauth provider is active i.e. we're on /authorize
+     */
+    active: false
+    
+    /**
+     * `True` if the user has taken an action (either granted or denied;
+     * either way, we're done)
+     */
+  , done: false
+  
+    /**
+     * The redirect_uri as passed in the query string(String)
+     */
+  , redirect_uri: null
+ 
+    /**
+     * The scope as passed in the query string (String)
+     */
+  , scope: null
+  }
+}
+```
 
 ## Client-side providers
 A component can register files to be loaded by the client-side loader with the `assets` provider. (Don't worry, hive-assets is a noop on the client-side, so simple components will work there, too.) Those files need to export a setup function and may consume and/or provide providers, like server-side components.
