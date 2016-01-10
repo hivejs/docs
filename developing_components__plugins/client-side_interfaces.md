@@ -5,7 +5,7 @@ The default Hive.js UI is based on redux. If you're not familiar with redux, hea
 
 tl;dr: Redux is a framework making use of functional reactive programming techniques. It features a central state atom (a simple object), that can be modified by dispatching actions. Reducer functions take state atom and an action and spit out the new state. You can subscribe to changes to the state atom and render the interface components accordingly.
 
-Since the state atom is central to everything you will do on the client-side, we have a snapshot for you to inspect right here, commented of course:
+Since the state atom is central to everything you will do on the client-side, we have a snapshot for you to inspect right here:
 
 ```js
 {
@@ -31,7 +31,7 @@ Since the state atom is central to everything you will do on the client-side, we
     authFailed: false
     
     /**
-     * The auth method the user chose, 'token' if the default
+     * The auth method the user has chosen, 'token' if the default
      * silent token cookie authentication is used
      */
   , authMethod: 'token'
@@ -48,6 +48,7 @@ Since the state atom is central to everything you will do on the client-side, we
   , grant: {
       access_token: 'DIOJgUZGVGHHZTU...'
     , token_type: 'bearer'
+    , user: 17
     }
     
     /**
@@ -60,7 +61,7 @@ Since the state atom is central to everything you will do on the client-side, we
   }
   /**
    * Modified by
-   * * .. the API of the `editor`component has not been finalized yet
+   * ... the API of the `editor`component has not been finalized yet
    */
 , editor: {
     /**
@@ -132,16 +133,43 @@ Since the state atom is central to everything you will do on the client-side, we
 ```
 
 ## Client-side providers
-A component can register files to be loaded by the client-side loader with the `assets` provider. (Don't worry, hive-assets is a noop on the client-side, so simple components will work there, too.) Those files need to export a setup function and may consume and/or provide providers, like server-side components.
+A component can register files to be loaded by the client-side loader with the `ui` provider. Those files, like server-side components, need to export a setup function and may consume and/or provide providers.
 
 ### ui
 Default implementation is hive-ui, which also includes the [bootstrap](http://getbootstrap.com) stylesheet.
 
+#### ui.reduxReducerMap
+Add a new property to this `Object` and assign it a reducer to have your own namespace in the state atom. The reducer will receive your state sub-tree only, instead of the whole state tree.
+
+#### ui.reduxRootReducers
+Add your root reducers to this `Array`. This is a great way for hooking into other components actions, but be sure to *always* return the state you got when you're not interested in an action.
+
+#### ui.reduxMiddleware
+Add your redux middle-ware to this `Array`. This is a great way to invoke side-effects such as talking with the server, storing cookies or waiting for a route (see `ui.route()`).
+
+#### ui.start(config:Object)
+Called by the bootstrapping code with the client-side config received by the server. Creates the redux store applying the middleware and combining all reducers.
+
+#### ui.onStart
+An event emitter, emitted after the ui was `ui.start()`ed. You can listen to this event by simply calling it with a listener: `ui.onStart(listener)`.
+
 #### ui.baseURL
 the protocol, domain, port and root path of the hive installation.
 
-#### ui.page
-A page.js instance. See [visionmedia/page.js](https://github.com/visionmedia/page.js).
+#### ui.config
+An object containing the configuration received from the server, populated during `ui.start()`.
+
+#### ui.store
+The redux store, populated during `ui.start()`. You can `store.dispatch(action:Object)` actions and `store.subscribe(listener:function)` to changes (see  [the redux API reference](http://redux.js.org/docs/api/Store.html)).
+
+#### ui.action_route(route:String):ROUTE
+This action allows you to route to a different URL.
+
+#### ui.action_loadState(state:Object):LOAD_STATE
+This action will replace the state tree with the one you supply. A ROUTE action will be dispatched automatically as well.
+
+#### ui.route(action, route:String):Bool|Object
+Use this helper in your middle-ware to listen for routes. You can specify a route in the familiar express style: `/users/:user`. If action is a ROUTE and the route matches the path in the action's payload, this will return the parameters as an Object, otherwise it'll return `false`.
 
 ### auth
 Default implementation is hive-ui-auth.
