@@ -164,7 +164,7 @@ creates a document with default contents according to the ottype you specify. Us
 The default implementation is hive-oauth-provider
 
 #### oauth.registerClientAuthenticator(authenticator:Generator)
-Takes a generator function that will be caleld with the following arguments to authenticate an OAuth client: `(client_id, client_secret, redirect_uri)`. You should check if either `client_secret` or `redirect_uri` is `null` and shouldn't compare them to the stored values in that case. You should, however, throw an error if one of the arguments is `undefined`! You should return `true` if the values match, and `false` if not.
+Takes a generator function that will be called with the following arguments to authenticate an OAuth client: `(client_id, client_secret, redirect_uri)`. You should check if either `client_secret` or `redirect_uri` is `null` and shouldn't compare them to the stored values in that case. You should, however, throw an error if one of the arguments is `undefined`! You should return `true` if the values match, and `false` if not.
 
 #### oauth.authenticateClient*(client_id, client_secret, redirect_uri)
 Uses the previously registered client authenticator to authenticate the passed client. Returns a boolean indicating whether the values match, aka the client is authenticated.
