@@ -24,10 +24,10 @@ returns the bootstrapping html of the web ui.
 Default implementation is hive-auth.
 
 #### auth.registerAuthenticationProvider(type:String, provider:Generator)
-register an authentication provider for an authentication type which should have the following signature: `function*(credentials)` and should return a user object or a falsy value if authentication failed.
+register an authentication provider for an authentication type which should have the following signature: `function*(credentials)` and should return a user object or, if authentication failed, a falsy value.
 
-#### auth.registerAuthorizationProvider(provider:Generator)
-register an athorization provider which should have the following signature: `function*(user, action, data)`, where `user` is a user object, `action` is a string that identifies the action (e.g. `"document:write"`), and `data` is an object providing additional information (e.g. `{document: <documentId>}`), and should return either a boolean indicating authorization granted/denied or `null` to indicate a neutral vote, leaving the decision up to other registered providers. Authorization providers should also take into account an optionally defined `scopes` field on the `user` object, which defines scopes that an authorized app posses to operate on the user's behalf.
+#### auth.registerAuthorizationProvider(provider:GeneratorFunction)
+register an authorization provider which should have the following signature: `function*(user, action, data)`, where `user` is a user object, `action` is a string that identifies the action (e.g. `"document:write"`), and `data` is an object providing additional information (e.g. `{document: <documentId>}`), and should return either a boolean indicating authorization granted/denied or `null` to indicate a neutral vote, leaving the decision up to other registered providers. Authorization providers should also take into account an optionally defined `scopes` field on the `user` object, which defines scopes that an authorized app posses to operate on the user's behalf.
 
 #### auth.authenticate*(authType:String, credentials:mixed)
 tries to authenticate a user using the provider registered for `authType` and the provided `credentials`. Returns a user object or a falsy value.
