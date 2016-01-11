@@ -171,55 +171,57 @@ This action will replace the state tree with the one you supply. A ROUTE action 
 #### ui.route(action, route:String):Bool|Object
 Use this helper in your middle-ware to listen for routes. You can specify a route in the familiar express style: `/users/:user`. If action is a ROUTE and the route matches the path in the action's payload, this will return the parameters as an Object, otherwise it'll return `false`.
 
-### auth
-Default implementation is hive-ui-auth.
+### session
+Default implementation is hive-ui-session.
 
-#### auth.registerAuthenticationProvider(method:String, provider:Object)
+#### session.registerAuthenticationProvider(method:String, provider:Object)
 Registers a client-side authentication method, where `method` is the name of the authentication method, e.g. `"github"`, and `provider` is an object that looks as follows:
 
 ```js
 var provider = {
   description: String
-, silent: function*(){} // or a function that returns a promise
-, ask: function*(){} // or a function that returns a promise
+, silent: function(){}
+, ask: function(children){}
 }
 ```
- * `silent` should be a function that somehow figures out the users credentials for this authentication method silently, e.g. by reading a cookie or retrieving an OAuth token from the current URL. If that is not possible just return `undefined` otherwise return the credentials.
- * `ask` is called if silent authentication fails and the user has chosen an authentication method to identify themselves with. This should ask the user for their credentials or otherwise redirect them to a site that takes their credentials, e.g. an OAuth endpoint.
+ * `silent()` should be a function that somehow figures out the users credentials for this authentication method *silently*, e.g. by reading a cookie or retrieving an OAuth token from the current URL. If that is not possible just return `undefined` otherwise return the credentials.
+ * `ask(children:Array)` is called if silent authentication fails and the user has chosen an authentication method to identify themselves with. This should ask the user for their credentials or otherwise redirect them to a site that takes their credentials, e.g. an OAuth endpoint. You can add a virtual-dom tree to the `children` array and it will appear inside a panel on the screen. When you have obtained the user's credentials, dispatch [`session.action_login(credentials)`]()
 * `description` is used to display the user more information about the authentication methods they can choose from. A short sentence should be enough, e.g. `"Login with your account at github.com"`.
 
 You don't need to implement both silent and ask, if that doesn't suit your use case.
 
-#### auth.authenticate*()
-tries to authenticate the user with the registered authentication providers using silent authentication first and if that fails asks the user for a method and their credentials. It returns an access token that can be used e.g. with hive-api-client or hive-shoe-client.
+#### session.onLogin
+This is an event emitter. You can subscribe by calling it with a listener function. The event is emitted after the user was successfully authenticated.
 
-### models
+#### session.onceLoggedIn(cb:Function)
+This is a helper function that allows you defer code until the user logged in. If the user is logged in already at call time, this will call the callback immediately using `setImmediate`.
 
-#### models.load*(apiClient:Object)
-returns the models, wiring them up with an API client (an instance of `hive-api-client`). For route `/:id` this will be done automatically and the models made available on `ctx.models`.
+### api
+This is redux middle-ware that integrates `hive-client-rest-api`. Dispatch the below actions to talk to the API in the name of the logged-in user. The names of the action creators should be pretty self-explanatory.
 
-#### models.Backbone
-The backbone instance used by the models. It is recommended that you use this instance instead of requiring your own backbone, since that can cause weird issues since they won't recognize each other's classes.
+This interface is implemented by `hive-ui-api`.
+
+####action_authenticate(method, credentials, scope):API_AUTHENTICATE
+This action is used internally by the session component.
+
+#### action_user_create(attributes:Object): API_USER_CREATE
+#### action_user_get(id:Number): API_USER_GET
+#### action_user_update(id:Number, attributes:Object): API_USER_UPDATE
+#### action_user_delete(id:Number): API_USER_DELETE
+#### action_user_getDocuments(id:Number): API_USER_GET_DOCUMENTS
+#### action_user_getSnapshots(id:Number): API_USER_GET_SNAPSHOTS
+#### action_document_create(attributes:Object): API_DOCUMENT_CREATE
+#### action_document_get(id:Number): API_DOCUMENT_GET
+#### action_document_update(id:Number, attributes:Object): API_DOCUMENT_UPDATE
+#### action_document_delete(id:Number): API_DOCUMENT_DELETE
+#### action_document_getSnapshots(id:Number): API_DOCUMENT_GET_SNAPSHOTS
+#### action_document_getSnapshotsSince(id, since): API_DOCUMENT_GET_SNAPSHOTS_SINCE
+#### action_document_change(id:Number, changes:String, parent:Number): API_DOCUMENT_CHANGE
+(`changes` must be a changeset as required by the document's ottype, serialized with `JSON.stringify`)
+#### action_snapshot_get(id:Number): API_SNAPSHOT_GET
 
 ### editor
 The default implementation is hive-ui-editor.
 
-#### editor.registerEditor(name:String, type:String, description:String, editoreditorSetup:Function*(editor:Element))
-Registers an editor called `name` for a given ot `type` with a `description`. The `editorSetup` function should load the editor and append any DOM elements as children of the element passed as `editor`. It should return a gulf Document. Editor names must be unique and are used for displaying options together with `description`s.
-
-### editor.createEditor(name:String, el:Element)
-Creates an editor by `name` inside `el`.
-
-### editor.askForEditorWithType(type:String)
-Returns the editor name if only one is available for the passed `type`. If more are available, adds a dialog box to `document.body` which allows the user to choose between the available ones and returns the editors's name.
-
-## Client-side hooks
-
-### ui:start (opts:Object)
-called upon initialization, before page.js runs its dispatch algorithm. `opts` will be passed to page.js.
-
-### models:load (models:Object)
-called *before* the backbone models are actually created with the input that will be fed to `Backbone.Model.extend`.
-
-### models:loaded (models:Object)
-called after the model objects are created. Wait for this hook until you use the models. If you're on the editor page and your component depends on `editor`, then the models will be available in `ctx.models` without the need to wait for any hooks.
+#### editor.registerEditor(name:String, type:String, description:String, editoreditorSetup:Function(editor:Element))
+Registers an editor called `name` for a given ot `type` with a `description`. The `editorSetup` function should load the editor and append any DOM elements as children of the element passed as `editor`. It should return a promise that resolves to a gulf Document. Editor names must be unique and are used for displaying options together with `description`s.
