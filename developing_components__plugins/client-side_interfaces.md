@@ -201,27 +201,43 @@ This is redux middle-ware that integrates `hive-client-rest-api`. Dispatch the b
 
 This interface is implemented by `hive-ui-api`.
 
-####action_authenticate(method, credentials, scope):API_AUTHENTICATE
+#### api.action_authenticate(method, credentials, scope):API_AUTHENTICATE
 This action is used internally by the session component.
 
-#### action_user_create(attributes:Object): API_USER_CREATE
-#### action_user_get(id:Number): API_USER_GET
-#### action_user_update(id:Number, attributes:Object): API_USER_UPDATE
-#### action_user_delete(id:Number): API_USER_DELETE
-#### action_user_getDocuments(id:Number): API_USER_GET_DOCUMENTS
-#### action_user_getSnapshots(id:Number): API_USER_GET_SNAPSHOTS
-#### action_document_create(attributes:Object): API_DOCUMENT_CREATE
-#### action_document_get(id:Number): API_DOCUMENT_GET
-#### action_document_update(id:Number, attributes:Object): API_DOCUMENT_UPDATE
-#### action_document_delete(id:Number): API_DOCUMENT_DELETE
-#### action_document_getSnapshots(id:Number): API_DOCUMENT_GET_SNAPSHOTS
-#### action_document_getSnapshotsSince(id, since): API_DOCUMENT_GET_SNAPSHOTS_SINCE
-#### action_document_change(id:Number, changes:String, parent:Number): API_DOCUMENT_CHANGE
+#### api.action_user_create(attributes:Object): API_USER_CREATE
+#### api.action_user_get(id:Number): API_USER_GET
+#### api.action_user_update(id:Number, attributes:Object): API_USER_UPDATE
+#### api.action_user_delete(id:Number): API_USER_DELETE
+#### api.action_user_getDocuments(id:Number): API_USER_GET_DOCUMENTS
+#### api.action_user_getSnapshots(id:Number): API_USER_GET_SNAPSHOTS
+#### api.action_document_create(attributes:Object): API_DOCUMENT_CREATE
+#### api.action_document_get(id:Number): API_DOCUMENT_GET
+#### api.action_document_update(id:Number, attributes:Object): API_DOCUMENT_UPDATE
+#### api.action_document_delete(id:Number): API_DOCUMENT_DELETE
+#### api.action_document_getSnapshots(id:Number): API_DOCUMENT_GET_SNAPSHOTS
+#### api.action_document_getSnapshotsSince(id, since): API_DOCUMENT_GET_SNAPSHOTS_SINCE
+#### api.action_document_change(id:Number, changes:String, parent:Number): API_DOCUMENT_CHANGE
 (`changes` must be a changeset as required by the document's ottype, serialized with `JSON.stringify`)
-#### action_snapshot_get(id:Number): API_SNAPSHOT_GET
+#### api.action_snapshot_get(id:Number): API_SNAPSHOT_GET
 
 ### editor
 The default implementation is hive-ui-editor.
 
 #### editor.registerEditor(name:String, type:String, description:String, editoreditorSetup:Function(editor:Element))
 Registers an editor called `name` for a given ot `type` with a `description`. The `editorSetup` function should load the editor and append any DOM elements as children of the element passed as `editor`. It should return a promise that resolves to a gulf Document. Editor names must be unique and are used for displaying options together with `description`s.
+
+### settings
+
+#### settings.action_setForDocument(map:Object): SETTINGS_SET_FOR_DOCUMENT
+#### settings.getForDocument(key)
+#### settings.action_setForUser(map:Object): SETTINGS_SET_FOR_USER
+#### settings.getForUser(key)
+#### settings.action_setForUserDocument(map:Object): SETTINGS_SET_FOR_USER
+#### settings.getForUserDocument(key)
+#### settings.action_setView(view): SETTINGS_SET_VIEW
+#### settings.onRenderUserSettings:(children:Array)
+This is an event emitter. Use it to display your own user settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
+#### settings.onRenderDocumentSettings:(children:Array)
+This is an event emitter. Use it to display your own document settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
+#### settings.onRenderUserDocumentSettings:(children:Array)
+This is an event emitter Use it to display your own personalized document settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
