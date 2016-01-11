@@ -173,15 +173,18 @@ Uses the previously registered client authenticator to authenticate the passed c
 
 ### orm:initialize (settings:Object)
  * `settings` the waterline settings object
+
 Called before initializing waterline. You may want to use this to load your own collections with `waterline.loadCollection()`. It may however be more convenient to use `models:load`.
 
 ### orm:initialized (models:Object)
  * `models` an object featuring `user`, `document` and `snapshot` collections (in the default configuration). These are full-fledged waterline collections with all [CRUD methods as per the waterline docs]()
 
 ### models:load (models:Object)
- * `models` an object featuring the configurations for `user`, `document` and `snapshot` models.
+ * `models` an object featuring the configurations for `user`, `document` and `snapshot` models
+
 This is called before the models are created with `Waterline.Collection.extend` and loaded with `waterline#loadCollection`, so it is convenient for you to add your own attributes and models here.
 
 ### http:listening (server:HttpServer)
  * `server` the http server object
+
 This hook is called once the server is listening. It is used for example in `hive-shoe-interface` to install the shoe server.
