@@ -44,6 +44,7 @@ Since the state atom is central to everything you will do on the client-side, we
   
     /**
      * The grant response by the `/token` endpoint
+     * if not logged in, this will be null
      */
   , grant: {
       access_token: 'DIOJgUZGVGHHZTU...'
@@ -241,3 +242,9 @@ This is an event emitter. Use it to display your own user settings by adding vir
 This is an event emitter. Use it to display your own document settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
 #### settings.onRenderUserDocumentSettings:(children:Array)
 This is an event emitter Use it to display your own personalized document settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
+
+### importexport
+
+#### action_export(exportType:String) : IMPORTEXPORT_EXPORTED
+#### action_toggleDropdown() : IMPORTEXPORT_TOGGLE_DROPDOWN
+#### action_exporting(type:String)
