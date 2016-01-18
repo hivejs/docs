@@ -1,5 +1,7 @@
 # Server-side interfaces
 
+<!-- toc -->
+
 ## Server-side Providers
 
 ### ui
