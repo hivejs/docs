@@ -130,6 +130,19 @@ Since the state atom is central to everything you will do on the client-side, we
      */
   , scope: null
   }
+, importexport: {
+    exportTypes: ui.config['importexport:exportTypes']
+  , importTypes: ui.config['importexport:importTypes']
+  , showExportDropdown: false
+  , showImportDropdown: false
+  , exporting: false
+  , exportError: false
+    /**
+     *
+     */
+  , importing: false
+  , importError: false
+  }
 }
 ```
 
@@ -244,7 +257,11 @@ This is an event emitter. Use it to display your own document settings by adding
 This is an event emitter Use it to display your own personalized document settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
 
 ### importexport
+Implemented by hive-ui-importexport
 
+#### action_toggleExportDropdown() : IMPORTEXPORT_TOGGLE_EXPORT_DROPDOWN
 #### action_export(exportType:String) : IMPORTEXPORT_EXPORTED
-#### action_toggleDropdown() : IMPORTEXPORT_TOGGLE_DROPDOWN
 #### action_exporting(type:String)
+#### action_toggleImportDropdown() : IMPORTEXPORT_TOGGLE_IMPORT_DROPDOWN
+#### action_import(files:FileList) : IMPORTEXPORT_IMPORTED
+#### action_importing(filename:String) : IMPORTEXPORT_IMPORTING
