@@ -1,5 +1,7 @@
 # Client-side interfaces
 
+<!-- toc -->
+
 ## Redux store
 The default Hive.js UI is based on redux. If you're not familiar with redux, head over to [the redux docs](http://redux.js.org/).
 
