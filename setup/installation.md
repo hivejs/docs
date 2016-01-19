@@ -4,7 +4,7 @@
 ## Pre-requisites
 To install hive.js on your machine you'll need to have installed the following:
  * [node.js](http://nodejs.org) v5
- * [npm](http://npmjs.org) (usually bundled with node.js)
+ * [npm](http://npmjs.org) v3 (usually bundled with node.js)
 
 If you have installed the pre-requisites, install the hive command globally with the following command:
 ```
@@ -17,18 +17,18 @@ Now, we use the hive command to set up your hive instance: Run the following com
 hive init
 ```
 
-## Choose a database backend
-Hive.js uses the [waterline](https://github.com/balderdashy/waterline) ORM, which supports a variety of database backends. You can [pick one of these](https://github.com/balderdashy/waterline-docs#supported-adapters) and install it with npm install, e.g. `npm install sails-memory` is good for testing purposes.
+### Choose a database backend
+Hive.js uses the [waterline](https://github.com/balderdashy/waterline) ORM, which supports a variety of database backends. You can [pick one of these](https://github.com/balderdashy/waterline-docs#supported-adapters) (hive-init(1)) will ask you and help you configure it). `sails-memory` is good for testing purposes, but if you're headed for production, you'll want a real database like mysql or postgresql.
 
-## Choose a broadcast transport
+### Choose a broadcast transport
 Hive.js is scalable. This means that you can spin up any number of workers to handle the load. However, these workers need to communicate and that's when broadcast transports come into play. Currently available are:
 
  * hive-broadcast-memory (simple stub that only works when you have just one worker)
  * hive-broadcast-smokesignal (sets up a peer-to-peer network through which the workers will communicate)
 
-By default hive-init(1) installs hive-broadcast-memory, so if you want some other transport you need to uninstall it first and then install the new transport with `npm install hive-broadcast-<name>`, where `<name>` is the name of the transport.
+hive-init(1) will ask you which one you want.
 
-## Choose one or more editors
+### Choose one or more editors
 Currently available editors are
 
  * `hive-editor-text-textarea`: Collaborate on plain text using a simple textarea.
@@ -36,7 +36,16 @@ Currently available editors are
  * `hive-editor-html-ckeditor`: Collaborate on HTML documents using [ckeditor](http://ckeditor.com/).
  * `hive-editor-svg-method-draw`: Collaborate on SVG images using [MethodDraw](https://github.com/duopixel/Method-Draw)
 
-You can install each of them by running `npm install hive-editor-<name>`, where `<name>` is the name of the editor.
+hive-init(1) will ask you which ones you want to install.
+
+## Fix babel
+Currently a lot ofmodules used by hive on the client-side depend on an outdated version of babel, but work with the latest if you remove their `.babelrc` files.
+
+Here's a one-liner to help you out. Run the following in your hive instance directory:
+
+```
+$ cd node_modules; find . -name .babelrc | grep -v packager | xargs rm
+```
 
 ## Adjust the settings
 These are just the mandatory settings plus the settings for hive-broadcast-smokesignal.
