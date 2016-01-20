@@ -38,6 +38,14 @@ Currently available editors are
 
 hive-init(1) will ask you which ones you want to install.
 
+## Install an auth provider
+Currently there are two auth providers:
+
+* `hive-auth-github`
+* `hive-auth-guest`
+
+Both implement allow-all authorization. Which means you don't want to use them in production (which you shouldn't use hive for anyway). That being sad, especially hive-auth-guest works splendidly for testing. You can install it by running `npm i hive-auth-guest` in your instance directory.
+
 ## Fix babel
 Currently a lot ofmodules used by hive on the client-side depend on an outdated version of babel, but work with the latest if you remove their `.babelrc` files.
 
