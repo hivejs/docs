@@ -62,15 +62,18 @@ while encapsuling the actual http server in a service.
  * [http](https://github.com/hivejs/hive-http) -- a koa.js instance
  * [orm](https://github.com/hivejs/hive-orm) -- Sets up the orm (waterline) and emits the orm:initialize hook to allow tweaking of settings
  * [ot](https://github.com/hivejs/hive-ot) -- Allows registration of ot types
- * [assets](https://github.com/hivejs/hive-assets) -- Allows registration of directories with static files and client-side components
+ * [ui](https://github.com/hivejs/hive-ui) -- Allows registration of directories with static files, client-side components and stylesheets
  * [sync](https://github.com/hivejs/hive-sync) -- Manages gulf Documents
  * [auth](https://github.com/hivejs/hive-auth) -- Allows registration of authentication methods and authorization implementations
+ * [importexport](https://github.com/hivejs/hive-importexport)
 
 ### Core client-side providers
- * [ui](https://github.com/hivejs/hive-ui) -- kicks off everything on the client side and provides the page.js instance
- * [ui-auth](https://github.com/hivejs/hive-ui-auth) -- allows registration of authentication methods and handles authentication
+ * [ui](https://github.com/hivejs/hive-ui) -- kicks off everything on the client side and provides redux store
+ * [ui-session](https://github.com/hivejs/hive-ui-session) -- allows registration of authentication methods and handles authentication
  * [ui-editor](https://github.com/hivejs/hive-ui-editor) -- allows registration of editors for OT types and connects them to the server
- * [ui-models](https://github.com/hivejs/hive-ui-models) -- enables access to the models as Backbone.Model objects
+ * [ui-api](https://github.com/hivejs/hive-ui-models) -- enables access to the REST API
+ * [ui-importexport](http://github.com/hivejs/hive-ui-importexport) -- adds access to import/export functionality to the interface
+ * [ui-settings](http://github.com/hivejs/hive-ui-settings) -- exposes settings in the UI and allows components to get and set them.
 
 ### Core services
  * [http](https://github.com/hivejs/hive-http) -- the http server
