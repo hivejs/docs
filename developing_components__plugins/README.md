@@ -1,2 +1,80 @@
 # Developing components / plugins
 
+
+## What are components?
+Everything you would like to add to hive is going to be wrapped in a component.
+
+A `hive-<component>` can register a *provider* and can consume providers by other components.
+A provider can do stuff for you, e.g. an auth provider can do authentication.
+
+Application tasks (e.g. http, queue, etc.) are encapsuled as *services*.
+The beauty of services is that they can be started internally in the main
+process or externally in a separate process. You can register your services with
+the services provider.
+
+Note that hive doesn't implement a way to re-start specific services since this
+would require assumptions that would limit your choices about the set-up and
+architecture of your instance.
+
+Usually a component is either a *provider* or a *service*, although in rare cases it might be both, e.g. the http component is a kind of registry provider
+while encapsuling the actual http server in a service.
+
+## Parts of hive
+
+### Core server-side providers
+ * [hooks](https://github.com/hivejs/hive-hooks) -- allows registration and emission of hooks
+ * [logger](https://github.com/hivejs/hive-logger) -- provides logging functionality
+ * [config](https://github.com/hivejs/hive-config) -- loads and provides the configuration
+ * [cli](https://github.com/hivejs/hive-cli) -- register your subcommands here
+ * [services](https://github.com/hivejs/hive-services) -- register your services here
+ * [broadcast](https://github.com/hivejs/hive-broadcast) -- allows document-wise broadcasting of messages and new changes
+ * [http](https://github.com/hivejs/hive-http) -- a koa.js instance
+ * [orm](https://github.com/hivejs/hive-orm) -- Sets up the orm (waterline) and emits the orm:initialize hook to allow tweaking of settings
+ * [ot](https://github.com/hivejs/hive-ot) -- Allows registration of ot types
+ * [ui](https://github.com/hivejs/hive-ui) -- Allows registration of directories with static files, client-side components and stylesheets
+ * [sync](https://github.com/hivejs/hive-sync) -- Manages gulf Documents
+ * [auth](https://github.com/hivejs/hive-auth) -- Allows registration of authentication methods and authorization implementations
+ * [importexport](https://github.com/hivejs/hive-importexport)
+
+### Core client-side providers
+ * [ui](https://github.com/hivejs/hive-ui) -- kicks off everything on the client side and provides redux store
+ * [ui-session](https://github.com/hivejs/hive-ui-session) -- allows registration of authentication methods and handles authentication
+ * [ui-editor](https://github.com/hivejs/hive-ui-editor) -- allows registration of editors for OT types and connects them to the server
+ * [ui-api](https://github.com/hivejs/hive-ui-models) -- enables access to the REST API
+ * [ui-importexport](http://github.com/hivejs/hive-ui-importexport) -- adds access to import/export functionality to the interface
+ * [ui-settings](http://github.com/hivejs/hive-ui-settings) -- exposes settings in the UI and allows components to get and set them.
+
+### Core services
+ * [http](https://github.com/hivejs/hive-http) -- the http server
+ * [queue](https://github.com/hivejs/hive-queue) -- a semaphore that tells each worker when it's turn has come to commit changes
+
+### Core commands
+ * [hive(1)](https://github.com/hivejs/hive) -- main binary
+ * hive-init(1) -- easily set-up your hive instance
+
+### Other core components
+ * [models](https://github.com/hivejs/hive-models) -- registers the built-in data models and emits models:load and models:loaded to allow addition and tweaking of models
+ * [interface-rest-api](https://github.com/hivejs/hive-interface-rest-api) -- registers the REST API, which is the stadard hive interface (one way to interface with hive in your app)
+ * [interface-shoe](https://github.com/hivejs/hive-interface-shoe) -- the streaming collaboration interface used by hive-ui-editor
+ * [broadcast-memory](https://github.com/hivejs/hive-broadcast-memory) -- broadcast transport stub for when you have only one worker
+ * [broadcast-smokesignal](https://github.com/hivejs/hive-broadcast-smokesignal) -- broadcast transport via [smokesignal](https://github.com/marcelklehr/smokesignal) p2p network
+
+## Architecture
+In the drawing below you can see how all these components interact on the server.
+```
+          Clients
+           |   ^
+   --------|---|-------------------------------------------
+           v   |
+        [  Interfaces  ]---> [       ]
+        [  (Auth)------]---> [Plugins]    // A worker process
+         |     |     ^       [       ]
+         v     v     |       [       ]
+    [Model] [  Sync  |] ---> [       ]
+     |       ^    |  |
+     |       |    |  |
+    -|-------|----|--|---------------------------------------
+     v       v    v  |
+   [DB] [Queue] [Broadcast]               // Other processes
+
+```
