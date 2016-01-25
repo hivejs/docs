@@ -1,30 +1,9 @@
 # Hive.js Documentation
-Hello stranger! This repository will familiarize you with the setup of Hive.js as well as its internals.
+Hello stranger! This repository will familiarize you with the setup and the internals of Hive.js.
 
-Checkout the [table of contents](SUMMARY.md).
+Checkout the [table of contents](SUMMARY.md), if you don't see it on the left.
 
 # Getting started
 
 ## What is Hive.js?
-
-## What is a hive instance?
-Similar to a git repository, a hive instance is simply a folder where your instance lives:
-code, configuration and any other stuff you might want to add all in one place.
-
-```
-your-hive-instance/
-+-node_modules/
-  +-components..
-+-config/
-  +-development.json
-  +-test.json
-  +-production.json
-+-package.json
-```
-
-#### Components
-The hive code base is organized in components that live in `your-hive-instance/node_modules/` and
-are conveniently managed via `your-hive-instance/package.json` as you would expect from a node project.
-
-#### Config
-Configuration files are stored in `your-hive-instance/config/` as `development.json`, `test.json` and `production.json`.
+Hive.js is a web application that allows you to collaborate with other on any document in real-time.
