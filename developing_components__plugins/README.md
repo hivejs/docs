@@ -22,31 +22,34 @@ while encapsuling the actual http server in a service.
 ## Parts of hive
 
 ### Core server-side providers
- * [hooks](https://github.com/hivejs/hive-hooks) -- allows registration and emission of hooks
- * [logger](https://github.com/hivejs/hive-logger) -- provides logging functionality
- * [config](https://github.com/hivejs/hive-config) -- loads and provides the configuration
- * [cli](https://github.com/hivejs/hive-cli) -- register your subcommands here
- * [services](https://github.com/hivejs/hive-services) -- register your services here
- * [broadcast](https://github.com/hivejs/hive-broadcast) -- allows document-wise broadcasting of messages and new changes
- * [http](https://github.com/hivejs/hive-http) -- a koa.js instance
- * [orm](https://github.com/hivejs/hive-orm) -- Sets up the orm (waterline) and emits the orm:initialize hook to allow tweaking of settings
- * [ot](https://github.com/hivejs/hive-ot) -- Allows registration of ot types
- * [ui](https://github.com/hivejs/hive-ui) -- Allows registration of directories with static files, client-side components and stylesheets
- * [sync](https://github.com/hivejs/hive-sync) -- Manages gulf Documents
- * [auth](https://github.com/hivejs/hive-auth) -- Allows registration of authentication methods and authorization implementations
- * [importexport](https://github.com/hivejs/hive-importexport)
+All the core providers reside in [hive-core](https://github.com/hivejs/hive-core).
+ * hooks -- allows registration and emission of hooks
+ * logger -- provides logging functionality
+ * config -- loads and provides the configuration
+ * cli -- register your subcommands here
+ * services -- register your services here
+ * broadcast -- allows document-wise broadcasting of messages and new changes
+ * http -- a koa.js instance
+ * orm -- Sets up the orm (waterline) and emits the orm:initialize hook to allow tweaking of settings
+ * ot -- Allows registration of ot types
+ * ui -- Allows registration of directories with static files, client-side components and stylesheets
+ * sync -- Manages gulf Documents
+ * auth -- Allows registration of authentication methods and authorization implementations
+ * importexport
 
 ### Core client-side providers
- * [ui](https://github.com/hivejs/hive-ui) -- kicks off everything on the client side and provides redux store
- * [ui-session](https://github.com/hivejs/hive-ui-session) -- allows registration of authentication methods and handles authentication
- * [ui-editor](https://github.com/hivejs/hive-ui-editor) -- allows registration of editors for OT types and connects them to the server
- * [ui-api](https://github.com/hivejs/hive-ui-models) -- enables access to the REST API
- * [ui-importexport](http://github.com/hivejs/hive-ui-importexport) -- adds access to import/export functionality to the interface
- * [ui-settings](http://github.com/hivejs/hive-ui-settings) -- exposes settings in the UI and allows components to get and set them.
+All the core client-side providers reside in [hive-ui](https://github.com/hivejs/hive-ui)
+ * ui -- kicks off everything on the client side and provides redux store
+ * session -- allows registration of authentication methods and handles authentication
+ * editor -- allows registration of editors for OT types and connects them to the server
+ * api -- enables access to the REST API
+ * importexport -- access to import/export functionality
+ * settings -- exposes settings in the UI and allows components to get and set them
 
 ### Core services
- * [http](https://github.com/hivejs/hive-http) -- the http server
- * [queue](https://github.com/hivejs/hive-queue) -- a semaphore that tells each worker when it's turn has come to commit changes
+You can start these services with the `-s|--start` option of `hive(1)`.
+ * http -- the http server
+ * queue -- a semaphore that tells each worker when it's turn has come to commit changes
 
 ### Core commands
  * [hive(1)](https://github.com/hivejs/hive) -- main binary
