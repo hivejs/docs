@@ -20,6 +20,13 @@ Since the state atom is central to everything you will do on the client-side, we
   router: '/documents/1'
   
   /**
+   * The current locale
+   * modify with
+   *  * ui.action_setLocale(locale:String):SET_LOCALE
+   */
+  locale: 'en'
+  
+  /**
    * Modify with
    * * session.action_chooseAuthMethod(authMethod):SESSION_CHOOSE_AUTH_METHOD
    * * session.action_loggingIn():SESSION_LOGGING_IN
@@ -61,6 +68,12 @@ Since the state atom is central to everything you will do on the client-side, we
   , user: {
       ...
     }
+    
+    /**
+     * A boolean, that tells you if the server is reachable
+     * (via the shoe stream interface)
+     */
+  , streamConnected: true
   }
   /**
    * Modified by
@@ -152,7 +165,7 @@ Since the state atom is central to everything you will do on the client-side, we
 A component can register files to be loaded by the client-side loader with the `ui` provider. Those files, like server-side components, need to export a setup function and may consume and/or provide providers.
 
 ### ui
-Default implementation is hive-ui, which also includes the [bootstrap](http://getbootstrap.com) stylesheet.
+Package: `hive-ui`
 
 #### ui.reduxReducerMap
 Add a new property to this `Object` and assign it a reducer to have your own namespace in the state atom. The reducer will receive your state sub-tree only, instead of the whole state tree.
@@ -166,8 +179,8 @@ Add your redux middle-ware to this `Array`. This is a great way to invoke side-e
 #### ui.start(config:Object)
 Called by the bootstrapping code with the client-side config received by the server. Creates the redux store applying the middleware and combining all reducers.
 
-#### ui.onStart
-An event emitter, emitted after the ui was `ui.start()`ed. You can listen to this event by simply calling it with a listener: `ui.onStart(listener)`.
+#### ui.onStart:AtomicEmitter
+Emitted after the ui was `ui.start()`ed. You can listen to this event by simply calling it with a listener: `ui.onStart(listener)`.
 
 #### ui.baseURL
 the protocol, domain, port and root path of the hive installation.
@@ -177,6 +190,15 @@ An object containing the configuration received from the server, populated durin
 
 #### ui.store
 The redux store, populated during `ui.start()`. You can `store.dispatch(action:Object)` actions and `store.subscribe(listener:function)` to changes (see  [the redux API reference](http://redux.js.org/docs/api/Store.html)).
+
+#### ui.onRenderHeader:AtomicEmitter(store, children)
+Emitted when the header is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderHeader(listener)`.
+
+#### ui.onRenderNavbar:AtomicEmitter(store, children)
+Emitted when the navbar is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderNavbar(listener)`.
+
+#### ui.onRenderBodyAtomicEmitter(store, children)
+Emitted when the body is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderBody(listener)`.
 
 #### ui.action_route(route:String):ROUTE
 This action allows you to route to a different URL.
@@ -188,7 +210,7 @@ This action will replace the state tree with the one you supply. A ROUTE action 
 Use this helper in your middle-ware to listen for routes. You can specify a route in the familiar express style: `/users/:user`. If action is a ROUTE and the route matches the path in the action's payload, this will return the parameters as an Object, otherwise it'll return `false`.
 
 ### session
-Default implementation is hive-ui-session.
+Package: `hive-ui`
 
 #### session.registerAuthenticationProvider(method:String, provider:Object)
 Registers a client-side authentication method, where `method` is the name of the authentication method, e.g. `"github"`, and `provider` is an object that looks as follows:
@@ -202,20 +224,24 @@ var provider = {
 ```
  * `silent()` should be a function that somehow figures out the users credentials for this authentication method *silently*, e.g. by reading a cookie or retrieving an OAuth token from the current URL. If that is not possible just return `undefined` otherwise return the credentials.
  * `ask(children:Array)` is called if silent authentication fails and the user has chosen an authentication method to identify themselves with. This should ask the user for their credentials or otherwise redirect them to a site that takes their credentials, e.g. an OAuth endpoint. You can add a virtual-dom tree to the `children` array and it will appear inside a panel on the screen. When you have obtained the user's credentials, dispatch [`session.action_login(credentials)`]()
-* `description` is used to display the user more information about the authentication methods they can choose from. A short sentence should be enough, e.g. `"Login with your account at github.com"`.
+ * `description` is used to display the user more information about the authentication methods they can choose from. A short sentence should be enough, e.g. `"Login with your account at github.com"`.
 
 You don't need to implement both silent and ask, if that doesn't suit your use case.
 
-#### session.onLogin
-This is an event emitter. You can subscribe by calling it with a listener function. The event is emitted after the user was successfully authenticated.
+#### session.onStreamConnected:AtomicEmitter
+Emitted when the shoe stream is connected to the server. This will also be emitted when the stream reconnects after the user was offline.
+
+#### session.onLogin:AtomicEmitter
+Emitted after the user was successfully authenticated.
 
 #### session.onceLoggedIn(cb:Function)
 This is a helper function that allows you defer code until the user logged in. If the user is logged in already at call time, this will call the callback immediately using `setImmediate`.
 
 ### api
+Package: `hive-ui`
+
 This is redux middle-ware that integrates `hive-client-rest-api`. Dispatch the below actions to talk to the API in the name of the logged-in user. The names of the action creators should be pretty self-explanatory.
 
-This interface is implemented by `hive-ui-api`.
 
 #### api.action_authenticate(method, credentials, scope):API_AUTHENTICATE
 This action is used internally by the session component.
@@ -237,12 +263,13 @@ This action is used internally by the session component.
 #### api.action_snapshot_get(id:Number): API_SNAPSHOT_GET
 
 ### editor
-The default implementation is hive-ui-editor.
+Package: `hive-ui`
 
 #### editor.registerEditor(name:String, type:String, description:String, editoreditorSetup:Function(editor:Element))
 Registers an editor called `name` for a given ot `type` with a `description`. The `editorSetup` function should load the editor and append any DOM elements as children of the element passed as `editor`. It should return a promise that resolves to a gulf Document. Editor names must be unique and are used for displaying options together with `description`s.
 
 ### settings
+Package: `hive-ui`
 
 #### settings.action_setForDocument(map:Object): SETTINGS_SET_FOR_DOCUMENT
 #### settings.getForDocument(key)
@@ -259,7 +286,7 @@ This is an event emitter. Use it to display your own document settings by adding
 This is an event emitter Use it to display your own personalized document settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
 
 ### importexport
-Implemented by hive-ui-importexport
+Package: `hive-ui`
 
 #### action_toggleExportDropdown() : IMPORTEXPORT_TOGGLE_EXPORT_DROPDOWN
 #### action_export(exportType:String) : IMPORTEXPORT_EXPORTED
