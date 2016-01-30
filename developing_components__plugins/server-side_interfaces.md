@@ -5,7 +5,7 @@
 ## Server-side Providers
 
 ### ui
-Default implementation is hive-assets.
+Package: `hive-ui`
 
 #### ui.registerModule(file:String)
 register a file that must adhere to the component definition spec and will be loaded on the client-side.
@@ -23,7 +23,7 @@ returns koa middleware which sends the bootstrapping html of the web ui
 returns the bootstrapping html of the web ui.
 
 ### auth
-Default implementation is hive-auth.
+Package: `hive-core`
 
 #### auth.registerAuthenticationProvider(type:String, provider:Generator)
 register an authentication provider for an authentication type which should have the following signature: `function*(credentials)` and should return a user object or, if authentication failed, a falsy value.
@@ -38,13 +38,13 @@ tries to authenticate a user using the provider registered for `authType` and th
 tries to authorize an `action` committed by a `user`, where `user` is a user object, `action` is a string that identifies the action (e.g. `"document:write"`), and `data` is an object providing additional information (e.g. `{document: <documentId>}`). Returns `true` (authorization granted) if at least one authorization provider voted `true` while all others voted `null`, and it returns `false` (authorization denied) if at least one authorization provider voted `false` or all voted `null`.
 
 ### authToken
-Default implementation is hive-auth-token
+Package: `hive-auth-token`.
 
 #### authToken.sign*(payload:Object)
 returns a jsonwebtoken from `payload` with the secret set in the config file, where `payload` should be an object containing a user `{user: <userId>}`, and optionally some scopes. `hive-auth-token` also registers a matching `token` authentication provider (see [hive-auth-token]()).
 
 ### broadcast
-Defualt implementation is hive-broadcast.
+Package: `hive-core`
 
 There's two types of broadcasts (which are multiplexed over the transport stream): the normal per-document broadcasts and the sync broadcasts, over which workers publicise newly committed edits.
 
@@ -61,7 +61,7 @@ Returns a duplex stream which acts as a broadcast proxy for the specified `docum
 Returns a duplex stream that allows yo to broadcast newly committed edits to and receive such from other workers. Used by `hive-sync`.
 
 ### cli
-The default implementaion is hive-cli.
+Package: `hive-core`
 
 #### cli.registerCommand(cmd:String, fn:Function)
 Registers a command `fn` with the name `cmd`. This won't throw if the command has already been registered and will instead override the earlier registration!
@@ -75,7 +75,7 @@ Inspects the command line arguments passed via `argv` and calls the correspondin
 The main command is the empty string `""` and is reserved for hive-services, but you can override that by registering a new function for the empty command `""`.
 
 ### services
-The default implementation is hive-services.
+Package: `hive-core`
 
 #### services.registerService(name:String, fn:Function)
 registers a function `fn` as a service called `name`.
@@ -84,6 +84,8 @@ registers a function `fn` as a service called `name`.
 starts a service called `name` with some options defined in `opts`. `runInternally` determines whether the service will be executed in the current process or inf a new process. By default services are started externally.
 
 ### config
+Package: `hive-core`
+
 The config provider implemented by hive-config is an nconf instance, but you shouldn't depend on that. It just makes it easy to specify which sources should be considered for configuration. Currently `hive-config` takes the contents of the config file correspnding to the `NODE_ENV` env var. Even higher priority have env vars which follow the form `hive__test__setting` (for setting config key `test:setting`).
 
 #### config.get(key)
@@ -100,7 +102,7 @@ The config is a big object. Components and plugins should put their config under
 you'd get that value with `config.get('test:timeout')`, however it's also possible to get the whole object, i.e. `config.get('test')` will return `{timeout:10000}`.
 
 ### hooks
-The default implementation is hive-hooks
+Package: `hive-core`
 
 #### hooks.on(hook:String, fn:Generator)
 #### hooks.registerHook(hook:String, fn:Generator)
@@ -110,7 +112,9 @@ registers a hook called `hook` with a generator function that will be called wit
 calls hooks registered for the provided name `hook` with `args`.
 
 ### http
-This is a koa instance, created by hive-http.
+Package: `hive-core`
+
+This is a koa instance.
 
 #### http.use([path:String], middleware:Generator)
 The router middleware is added right before the http server is started, so any middleware you add via `http.use()` will execute before the router.
@@ -121,7 +125,9 @@ This is a router as implemented by koa-router.
 #### http.router.VERB(path:String, fn:Generator)
 
 ### logger
-The logger provider implemented by hive-logger is a log4js instance.
+Package: `hive-core`
+
+This is a log4js instance.
 
 #### logger.getLogger(name:String)
 returns a logger instance that features the following methods:
@@ -134,7 +140,7 @@ returns a logger instance that features the following methods:
  * `fatal`
 
 ### ot
-The default implementation is hive-ot.
+Package: `hive-core`
 
 #### ot.registerOTType(name:String, ottype:Object)
 registers an OT type that adheres to the shareJS ottype spec.
@@ -154,7 +160,7 @@ q.push(function(cb){
 ```
 
 ### sync
-The default implementation is hive-sync.
+Package: `hive-core`
 
 #### sync.getDocument*(document:Number)
 returns a gulf document fully wired with queue and adapter. Use this to interface with the gulf document mechanics. And have a look at [the gulf]() docs to see how it works.
