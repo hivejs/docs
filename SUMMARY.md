@@ -13,6 +13,6 @@
 * [Developing components / plugins](developing_components__plugins/README.md)
    * [Server-side interfaces](developing_components__plugins/server-side_interfaces.md)
    * [Client-side interfaces](developing_components__plugins/client-side_interfaces.md)
-   * [FAQ](developing_components__plugins/faq.md)
    * [Localization](developing_components__plugins/localization.md)
+   * [FAQ](developing_components__plugins/faq.md)
 
