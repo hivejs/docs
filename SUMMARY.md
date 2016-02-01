@@ -6,7 +6,7 @@
    * [Installation](setup/installation.md)
    * [Installing plugins](setup/installing_plugins.md)
 * [Developing Peripherals](developing_peripherals/README.md)
-   * Data model
+   * [Data model](developing_peripherals/data_model.md)
    * Authentication
    * Interface: REST API
    * Interface: Shoe/Sockjs
