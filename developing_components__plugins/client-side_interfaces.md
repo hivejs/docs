@@ -188,6 +188,12 @@ the protocol, domain, port and root path of the hive installation.
 #### ui.config
 An object containing the configuration received from the server, populated during `ui.start()`.
 
+#### globalize
+The [globalize instance](https://github.com/jquery/globalize).
+
+#### ui._(messagePath): Function(params...|params:Object)
+A shortcut for `ui.globalize.messageFormatter`. See [Localization]() for more information.
+
 #### ui.store
 The redux store, populated during `ui.start()`. You can `store.dispatch(action:Object)` actions and `store.subscribe(listener:function)` to changes (see  [the redux API reference](http://redux.js.org/docs/api/Store.html)).
 
