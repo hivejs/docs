@@ -7,7 +7,7 @@
    * [Installing plugins](setup/installing_plugins.md)
 * [Developing Peripherals](developing_peripherals/README.md)
    * [Data model](developing_peripherals/data_model.md)
-   * [Authentication](developing_peripherals/authentication.md)
+   * [Authentication/Authorization](developing_peripherals/auth.md)
    * Interface: REST API
    * Interface: Shoe/Sockjs
 * [Developing components / plugins](developing_components__plugins/README.md)
