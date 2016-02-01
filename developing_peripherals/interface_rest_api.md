@@ -9,7 +9,7 @@ All methods will return a 401 status code if you failed to provide an access  to
 
 ### Create a document
 ```
-POST /documents
+POST /api/v1/documents
 {"type": "text/plain"}
 ```
 ```
@@ -19,7 +19,7 @@ POST /documents
 
 ### Get a document
 ```
-GET /documents/2
+GET /api/v1/documents/2
 ```
 ```
 200 OK
@@ -28,7 +28,7 @@ GET /documents/2
 
 ### Modifying a document's attributes
 ```
-PUT /documents/2
+PUT /api/v1/documents/2
 {"settings": {"editor:editor": "CodeMirror"}}
 ```
 ```
@@ -38,7 +38,7 @@ PUT /documents/2
 
 ### Delete a document
 ```
-DELETE /documents/2
+DELETE /api/v1/documents/2
 ```
 ```
 200 OK
@@ -47,7 +47,7 @@ DELETE /documents/2
 
 ### Change a document's contents
 ```
-POST /documents/2/snapshots
+POST /api/v1/documents/2/snapshots
 {"parent": "658deg654erh", "changes": "..."}
 ```
 ```
@@ -59,7 +59,7 @@ POST /documents/2/snapshots
 (Appends to the end of the document. Attachments must not be larger than 8MiB!)
 
 ```
-POST /documents/2/import
+POST /api/v1/documents/2/import
 ```
 ```
 200 OK
@@ -68,7 +68,7 @@ POST /documents/2/import
 
 ### Get a document's authors
 ```
-GET /documents/2/authors
+GET /api/v1/documents/2/authors
 ```
 ```
 200 OK
@@ -77,7 +77,7 @@ GET /documents/2/authors
 
 ### Get a document's snapshots
 ```
-GET /documents/2/snapshots
+GET /api/v1/documents/2/snapshots
 ```
 ```
 200 OK
@@ -86,7 +86,7 @@ GET /documents/2/snapshots
 
 ### Get all snapshots of a document after a certain revision
 ```
-GET /documents/2/snapshots?since=658deg654erh
+GET /api/v1/documents/2/snapshots?since=658deg654erh
 ```
 ```
 200 OK
@@ -95,7 +95,7 @@ GET /documents/2/snapshots?since=658deg654erh
 
 ### Create a user
 ```
-POST /users
+POST /api/v1/users
 {"name": "marcel", "type": "github", "foreignId": "marcelklehr"}
 ```
 ```
@@ -105,7 +105,7 @@ POST /users
 
 ### Get a user
 ```
-GET /users/17
+GET /api/v1/users/17
 ```
 ```
 200 OK
@@ -123,7 +123,7 @@ PUT /users/17
 
 ### Delete a user
 ```
-DELETE /users/17
+DELETE /api/v1/users/17
 ```
 ```
 200 OK
@@ -132,7 +132,7 @@ DELETE /users/17
 
 ### Get documents a user has edited
 ```
-GET /users/17/documents
+GET /api/v1/users/17/documents
 ```
 ```
 200 OK
@@ -141,7 +141,7 @@ GET /users/17/documents
 
 ### Get all snapshots a user has authored
 ```
-GET /users/17/snapshots
+GET /api/v1/users/17/snapshots
 ```
 ```
 200 OK
@@ -150,7 +150,7 @@ GET /users/17/snapshots
 
 ### Get a snapshot
 ```
-GET /snapshots/9834zf9obv
+GET /api/v1/snapshots/9834zf9obv
 ```
 ```
 200 OK
@@ -159,7 +159,7 @@ GET /snapshots/9834zf9obv
 
 ### Export a snapshot
 ```
-GET /snapshot/9834zf9obv/export?type=text/plain
+GET /api/v1/snapshot/9834zf9obv/export?type=text/plain
 ```
 ```
 200 OK
