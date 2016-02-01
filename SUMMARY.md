@@ -8,7 +8,7 @@
 * [Developing Peripherals](developing_peripherals/README.md)
    * [Data model](developing_peripherals/data_model.md)
    * [Authentication/Authorization](developing_peripherals/auth.md)
-   * Interface: REST API
+   * [Interface: REST API](developing_peripherals/interface_rest_api.md)
    * Interface: Shoe/Sockjs
 * [Developing components / plugins](developing_components__plugins/README.md)
    * [Server-side interfaces](developing_components__plugins/server-side_interfaces.md)
