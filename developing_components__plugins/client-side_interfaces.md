@@ -207,7 +207,7 @@ Emitted when the header is rendered. You can listen to this event by simply call
 #### ui.onRenderNavbar:AtomicEmitter(store, children)
 Emitted when the navbar is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderNavbar(listener)`.
 
-#### ui.onRenderBodyAtomicEmitter(store, children)
+#### ui.onRenderBody:AtomicEmitter(store, children)
 Emitted when the body is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderBody(listener)`.
 
 #### ui.action_route(route:String):ROUTE
