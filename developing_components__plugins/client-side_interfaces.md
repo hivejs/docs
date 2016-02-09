@@ -147,18 +147,24 @@ Since the state atom is central to everything you will do on the client-side, we
   /**
    * These values should be pretty self-explanatory
    * modify with:
-   * * action_export(exportType):IMPORTEXPORT_EXPORTED
-   * * action_import(files:FileList): IMPORTEXPORT_IMPORTED
-   * * action_toggleExportDropdown():IMPORTEXPORT_TOGGLE_EXPORT_DROPDOWN
-   * * action_toggleImportDropdown():IMPORTEXPORT_TOGGLE_IMPORT_DROPDOWN
+   * * action_export(exportType):EXPORT_EXPORTED
+   * * action_toggleExportDropdown():EXPORT_TOGGLE_DROPDOWN
    */
-, importexport: {
+, export: {
     exportTypes: ui.config['importexport:exportTypes']
-  , importTypes: ui.config['importexport:importTypes']
   , showExportDropdown: false
-  , showImportDropdown: false
   , exporting: false
   , exportError: false
+  }
+  /**
+   * These values should be pretty self-explanatory
+   * modify with:
+   * * action_import(files:FileList): IMPORT_IMPORTED
+   * * action_toggleImportDropdown():IMPORTEXPORT_TOGGLE_DROPDOWN
+   */
+, import: {
+    importTypes: ui.config['importexport:importTypes']
+  , showImportDropdown: false
   , importing: false
   , importError: false
   }
@@ -204,8 +210,8 @@ The redux store, populated during `ui.start()`. You can `store.dispatch(action:O
 #### ui.onRenderHeader:AtomicEmitter(store, children)
 Emitted when the header is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderHeader(listener)`.
 
-#### ui.onRenderNavbar:AtomicEmitter(store, children)
-Emitted when the navbar is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderNavbar(listener)`.
+#### ui.onRenderNavbarRight:AtomicEmitter(store, children)
+Emitted when the right part of the navbar is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderNavbar(listener)`.
 
 #### ui.onRenderBody:AtomicEmitter(store, children)
 Emitted when the body is rendered. You can listen to this event by simply calling it with a listener: `ui.onRenderBody(listener)`.
