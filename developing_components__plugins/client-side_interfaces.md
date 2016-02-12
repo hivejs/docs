@@ -146,6 +146,7 @@ Since the state atom is central to everything you will do on the client-side, we
   }
   /**
    * These values should be pretty self-explanatory
+   * However, they're only available if hive-plugin-export is installed
    * modify with:
    * * action_export(exportType):EXPORT_EXPORTED
    * * action_toggleExportDropdown():EXPORT_TOGGLE_DROPDOWN
@@ -158,6 +159,7 @@ Since the state atom is central to everything you will do on the client-side, we
   }
   /**
    * These values should be pretty self-explanatory
+   * However, they're only available if hive-plugin-import is installed
    * modify with:
    * * action_import(files:FileList): IMPORT_IMPORTED
    * * action_toggleImportDropdown():IMPORTEXPORT_TOGGLE_DROPDOWN
