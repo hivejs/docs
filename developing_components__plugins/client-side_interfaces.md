@@ -192,7 +192,7 @@ the protocol, domain, port and root path of the hive installation.
 #### ui.config
 An object containing the configuration received from the server, populated during `ui.start()`.
 
-#### globalize
+#### ui.globalize
 The [globalize instance](https://github.com/jquery/globalize).
 
 #### ui._(messagePath): Function(params...|params:Object)
