@@ -47,7 +47,7 @@ Currently there are two auth providers:
 Both implement allow-all authorization. Which means you don't want to use them in production (which you shouldn't use hive for anyway). That being sad, especially hive-auth-guest works splendidly for testing. You can install it by running `npm i hive-auth-guest` in your instance directory.
 
 ## Fix babel
-Currently a lot ofmodules used by hive on the client-side depend on an outdated version of babel, but work with the latest if you remove their `.babelrc` files.
+Currently a lot of modules used by hive on the client-side depend on an outdated version of babel, but work with the latest if you remove their `.babelrc` files.
 
 Here's a one-liner to help you out. Run the following in your hive instance directory:
 
@@ -102,7 +102,7 @@ These are just the mandatory settings plus the settings for hive-broadcast-smoke
 Now you can start hive.js by running
 
 ```
-$ hive -s http -s queue
+$ NODE_ENV=test hive -s http -s queue
 ```
 (This will start a hive process with the http server and the queue service. When spinning up additional workers, you shouldn't start the queue service, so leave out `-s queue` in that case.)
 
