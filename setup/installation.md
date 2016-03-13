@@ -106,4 +106,4 @@ $ NODE_ENV=test hive -s http -s queue
 ```
 (This will start a hive process with the http server and the queue service. When spinning up additional workers, you shouldn't start the queue service, so leave out `-s queue` in that case.)
 
-Now check out `http://localhost:1235` in your browser.
+Now check out `http://localhost:1235/documents/1` in your browser. If all is well, you will be asked to authenticate. Afterwards you'll be notified that the document you're trying to access doesn't exist. So far, so good.
