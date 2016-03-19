@@ -255,6 +255,10 @@ Emitted after the user was successfully authenticated.
 #### session.onceLoggedIn(cb:Function)
 This is a helper function that allows you defer code until the user logged in. If the user is logged in already at call time, this will call the callback immediately using `setImmediate`.
 
+#### session.onceStreamLoaded(cb:Function)
+This is a helper function that allows you defer code until the stream is loaded. If the stream is loaded already at call time, this will call the callback immediately using `setImmediate`.
+
+
 ### api
 Package: `hive-ui`
 
