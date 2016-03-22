@@ -10,7 +10,12 @@ A plugin for the CKeditor editor package that adds a thin pane to the left of th
 Install with `npm i hive-plugin-authorship-markers-ckeditor`
 
 ## hive-plugin-cursor-broadcast-ckeditor
-A plugin for the CKeditor editor package that displays the caret/selection of other user currently editing the same document.
+A plugin for the CKeditor editor package that displays the caret/selection of other users currently editing the same document.
+
+Install with `npm i hive-plugin-cursor-broadcast-ckeditor`
+
+## hive-plugin-cursor-broadcast-codemirror
+A plugin for the codemirror editor package that displays the caret/selection of other users currently editing the same document.
 
 Install with `npm i hive-plugin-cursor-broadcast-ckeditor`
 
@@ -23,3 +28,8 @@ Install with `npm i hive-plugin-chat`
 A plugin for the editor page that allows users to see who else is viewing the current document.
 
 Install with `npm i hive-plugin-presence`
+
+## hive-plugin-my-documents
+A plugin that adds owner and read/write privileges and a management page for your documents. Currently still very basic.
+
+Install with `npm i hive-plugin-my-documents`

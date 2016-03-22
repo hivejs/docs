@@ -8,7 +8,7 @@ To install hive.js on your machine you'll need to have installed the following:
 
 If you have installed the pre-requisites, install the hive command globally with the following command:
 ```
-npm install -g hivejs
+npm install -g hive
 ```
 
 ## Set up your instance

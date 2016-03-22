@@ -13,4 +13,4 @@ https://hive.example.com/authorize?response_type=token&scope=...&redirect_uri=..
 * `response_type` At the moment hive.js only supports the implicit grant type (aka. `response_type=token`).
 
 * `redirect_uri` The callback URI that the user will be redirected to; should be a https url.
-* `scope` An value that is currently specific to the hive.js authorization provider, this may change in future versions; leave out for full access.
+* `scope` A value that is currently specific to the hive.js authorization provider, this may change in future versions; leave out for full access.
