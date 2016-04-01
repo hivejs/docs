@@ -5,7 +5,7 @@
     ],
     "pluginsConfig": {
       "piwik": {
-        "URL": "https://piwik.der-analphabet.de",
+        "URL": "piwik.der-analphabet.de",
         "siteId": 4
       }
     }
