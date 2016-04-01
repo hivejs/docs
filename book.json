@@ -1,6 +1,12 @@
 {
     "plugins": [
         "toc"
+      , "piwik"
     ],
-    "pluginsConfig": {}
+    "pluginsConfig": {
+      "piwik": {
+        "URL": "piwik.der-analphabet.de",
+        "siteId": 4
+      }
+    }
 }
