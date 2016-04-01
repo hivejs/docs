@@ -11,6 +11,7 @@ your-hive-instance/
 +-node_modules/
   +-components..
 +-config/
+  +-default.json
   +-development.json
   +-test.json
   +-production.json
@@ -22,4 +23,4 @@ The hive code base is organized in components that live in `your-hive-instance/n
 are conveniently managed via `your-hive-instance/package.json` as you would expect from a node project.
 
 #### Config
-Configuration files are stored in `your-hive-instance/config/` as `development.json`, `test.json` and `production.json`.
+Configuration files are stored in `your-hive-instance/config/` as `default.json`, `development.json`, `test.json` and `production.json`.
