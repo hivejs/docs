@@ -202,3 +202,8 @@ This hook is called once the server is listening. It is used for example in `hiv
 
 When this hook is called, the user is already authenticated.
 It is not recommended to use this method unless you know what you are doing. Use broadcast channels instead.
+
+### interface-stream:setup (primus:Primus)
+ * `primus` A primus server. See https://github.com/primus/primus
+
+This is used in hive-ui to provide the client-side with the primus client code using `primus.library()`.
