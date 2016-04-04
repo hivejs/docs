@@ -195,4 +195,10 @@ This is called before the models are created with `Waterline.Collection.extend` 
 ### http:listening (server:HttpServer)
  * `server` the http server object
 
-This hook is called once the server is listening. It is used for example in `hive-shoe-interface` to install the shoe server.
+This hook is called once the server is listening. It is used for example in `hive-interface-stream` to install the shoe server.
+
+### interface-stream:connect (plex:Stream)
+ * `plex` A dataplex stream that allows you to add your own communication channel.
+
+When this hook is called, the user is already authenticated.
+It is not recommended to use this method unless you know what you are doing. Use broadcast channels instead.
