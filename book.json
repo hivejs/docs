@@ -2,11 +2,15 @@
     "plugins": [
         "toc"
       , "piwik"
+      , "editlink"
     ],
     "pluginsConfig": {
       "piwik": {
         "URL": "piwik.der-analphabet.de/",
         "siteId": 4
+      }
+    , "editlink": {
+        "base": "https://github.com/hivejs/docs/blob/master/"
       }
     }
 }
