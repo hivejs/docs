@@ -55,6 +55,8 @@ Here's a one-liner to help you out. Run the following in your hive instance dire
 $ cd node_modules; find . -name .babelrc | grep -v packager | xargs rm
 ```
 
+(Note: This doesn't work on windows. I'm not a good batch coder. If you are -- any contributions are greatly appreciated. Otherwise, you'll have to dig through the directories: Currently babel is [only enabled](https://github.com/hivejs/hive-ui/blob/master/index.js#L42) for modules that start with  `redux`, `flux` or  `reducers`. Go through all directories that start with these words and delete the file called `.babelrc`.)
+
 ## Adjust the settings
 These are just the mandatory settings plus the settings for hive-broadcast-smokesignal.
 ```js
@@ -104,6 +106,13 @@ Now you can start hive.js by running
 ```
 $ NODE_ENV=test hive -s http -s queue
 ```
+
+On windows, use:
+```
+> set NODE_ENV=test
+> hive -s http -s queue
+```
+
 (This will start a hive process with the http server and the queue service. When spinning up additional workers, you shouldn't start the queue service, so leave out `-s queue` in that case.)
 
 Now check out `http://localhost:1235/documents/1` in your browser. If all is well, you will be asked to authenticate. Afterwards you'll be notified that the document you're trying to access doesn't exist. So far, so good.
