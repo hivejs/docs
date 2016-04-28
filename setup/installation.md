@@ -17,6 +17,8 @@ Now, we use the hive command to set up your hive instance: Run the following com
 hive init
 ```
 
+The below sections explain the choices you can make. If you're running hive-init(1) for the first time in the current directory, you can safely confirm all yes/no questions.
+
 ### Choose a database backend
 Hive.js uses the [waterline](https://github.com/balderdashy/waterline) ORM, which supports a variety of database backends. You can [pick one of these](https://github.com/balderdashy/waterline-docs#supported-adapters) (hive-init(1)) will ask you and help you configure it). `sails-memory` is good for testing purposes, but if you're headed for production, you'll want a real database like mysql or postgresql.
 
