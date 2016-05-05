@@ -5,7 +5,7 @@
 ## Server-side Providers
 
 ### ui
-Package: `hive-ui`
+Package: [`hive-ui`](https://github.com/hivejs/hive-ui)
 
 #### ui.registerModule(file:String)
 register a file that must adhere to the component definition spec and will be loaded on the client-side.
@@ -23,7 +23,7 @@ returns koa middleware which sends the bootstrapping html of the web ui
 returns the bootstrapping html of the web ui.
 
 ### auth
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 #### auth.registerAuthenticationProvider(type:String, provider:Generator)
 register an authentication provider for an authentication type which should have the following signature: `function*(credentials)` and should return a user object or, if authentication failed, a falsy value.
@@ -38,13 +38,13 @@ tries to authenticate a user using the provider registered for `authType` and th
 tries to authorize an `action` committed by a `user`, where `user` is a user object, `action` is a string that identifies the action (e.g. `"document:write"`), and `data` is an object providing additional information (e.g. `{document: <documentId>}`). Returns `true` (authorization granted) if at least one authorization provider voted `true` while all others voted `null`, and it returns `false` (authorization denied) if at least one authorization provider voted `false` or all voted `null`.
 
 ### authToken
-Package: `hive-auth-token`.
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 #### authToken.sign*(payload:Object)
 returns a jsonwebtoken from `payload` with the secret set in the config file, where `payload` should be an object containing a user `{user: <userId>}`, and optionally some scopes. `hive-auth-token` also registers a matching `token` authentication provider (see [hive-auth-token]()).
 
 ### broadcast
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 There's two types of broadcasts (which are multiplexed over the transport stream): the normal per-document broadcasts and the sync broadcasts, over which workers publicise newly committed edits.
 
@@ -61,7 +61,7 @@ Returns a duplex stream which acts as a broadcast proxy for the specified `docum
 Returns a duplex stream that allows yo to broadcast newly committed edits to and receive such from other workers. Used by `hive-sync`.
 
 ### cli
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 #### cli.registerCommand(cmd:String, fn:Function)
 Registers a command `fn` with the name `cmd`. This won't throw if the command has already been registered and will instead override the earlier registration!
@@ -75,7 +75,7 @@ Inspects the command line arguments passed via `argv` and calls the correspondin
 The main command is the empty string `""` and is reserved for hive-services, but you can override that by registering a new function for the empty command `""`.
 
 ### services
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 #### services.registerService(name:String, fn:Function)
 registers a function `fn` as a service called `name`.
@@ -84,9 +84,13 @@ registers a function `fn` as a service called `name`.
 starts a service called `name` with some options defined in `opts`. `runInternally` determines whether the service will be executed in the current process or inf a new process. By default services are started externally.
 
 ### config
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
-The config provider implemented by hive-config is an nconf instance, but you shouldn't depend on that. It just makes it easy to specify which sources should be considered for configuration. Currently `hive-config` takes the contents of the config file correspnding to the `NODE_ENV` env var. Even higher priority have env vars which follow the form `hive__test__setting` (for setting config key `test:setting`).
+The config provider provides
+
+1. the contents of `default.json` in the config dir of your instance
+2. with higher priority: the contents of the config file correspnding to the `NODE_ENV` env var.
+3. Even higher priority have env vars which follow the form `hive_foo_bar` (for setting config key `foo:bar`).
 
 #### config.get(key)
 The config is a big object. Components and plugins should put their config under a key that is prefixed with the component's name. The separator for keys is the colon `:`, e.g. if your config file looks like this
@@ -102,7 +106,7 @@ The config is a big object. Components and plugins should put their config under
 you'd get that value with `config.get('test:timeout')`, however it's also possible to get the whole object, i.e. `config.get('test')` will return `{timeout:10000}`.
 
 ### hooks
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 #### hooks.on(hook:String, fn:Generator)
 #### hooks.registerHook(hook:String, fn:Generator)
@@ -112,7 +116,7 @@ registers a hook called `hook` with a generator function that will be called wit
 calls hooks registered for the provided name `hook` with `args`.
 
 ### http
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 This is a koa instance.
 
@@ -125,7 +129,7 @@ This is a router as implemented by koa-router.
 #### http.router.VERB(path:String, fn:Generator)
 
 ### logger
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 This is a log4js instance.
 
@@ -140,7 +144,7 @@ returns a logger instance that features the following methods:
  * `fatal`
 
 ### ot
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 #### ot.registerOTType(name:String, ottype:Object)
 registers an OT type that adheres to the shareJS ottype spec.
@@ -149,6 +153,8 @@ registers an OT type that adheres to the shareJS ottype spec.
 returns an OT type registered under `name`.
 
 ### queue
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
+
 This provider should coordinate with other workers to ensure that queue submissions from all workers are processed and there's never two workers running tasks of the same queue in parallel. The default implementation is `hive-queue` which registers a service `queue` which does the coordination.
 
 #### queue.document(document:Number)
@@ -160,7 +166,7 @@ q.push(function(cb){
 ```
 
 ### sync
-Package: `hive-core`
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 #### sync.getDocument*(document:Number)
 returns a gulf document fully wired with queue and adapter. Use this to interface with the gulf document mechanics. And have a look at [the gulf]() docs to see how it works.
@@ -169,7 +175,7 @@ returns a gulf document fully wired with queue and adapter. Use this to interfac
 creates a document with default contents according to the ottype you specify. Use `sync.getDocument*()` to obtain the corresponding gulf document.
 
 ### oauth
-The default implementation is hive-oauth-provider
+Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
 #### oauth.registerClientAuthenticator(authenticator:Generator)
 Takes a generator function that will be called with the following arguments to authenticate an OAuth client: `(client_id, client_secret, redirect_uri)`. You should check if either `client_secret` or `redirect_uri` is `null` and shouldn't compare them to the stored values in that case. You should, however, throw an error if one of the arguments is `undefined`! You should return `true` if the values match, and `false` if not.
