@@ -177,7 +177,7 @@ Since the state atom is central to everything you will do on the client-side, we
 A component can register files to be loaded by the client-side loader with the `ui` provider. Those files, like server-side components, need to export a setup function and may consume and/or provide providers.
 
 ### ui
-Package: `hive-ui`
+Package: [`hive-ui`](https://github.com/hivejs/hive-ui)
 
 #### ui.reduxReducerMap
 Add a new property to this `Object` and assign it a reducer to have your own namespace in the state atom. The reducer will receive your state sub-tree only, instead of the whole state tree.
@@ -228,7 +228,7 @@ This action will replace the state tree with the one you supply. A ROUTE action 
 Use this helper in your middle-ware to listen for routes. You can specify a route in the familiar express style: `/users/:user`. If action is a ROUTE and the route matches the path in the action's payload, this will return the parameters as an Object, otherwise it'll return `false`.
 
 ### session
-Package: `hive-ui`
+Package: [`hive-ui`](https://github.com/hivejs/hive-ui)
 
 #### session.registerAuthenticationProvider(method:String, provider:Object)
 Registers a client-side authentication method, where `method` is the name of the authentication method, e.g. `"github"`, and `provider` is an object that looks as follows:
@@ -260,7 +260,7 @@ This is a helper function that allows you defer code until the stream is connect
 
 
 ### api
-Package: `hive-ui`
+Package: [`hive-ui`](https://github.com/hivejs/hive-ui)
 
 This is redux middle-ware that integrates `hive-client-rest-api`. Dispatch the below actions to talk to the API in the name of the logged-in user. The names of the action creators should be pretty self-explanatory.
 
@@ -285,13 +285,13 @@ This action is used internally by the session component.
 #### api.action_snapshot_get(id:Number): API_SNAPSHOT_GET
 
 ### editor
-Package: `hive-ui`
+Package: [`hive-ui`](https://github.com/hivejs/hive-ui)
 
 #### editor.registerEditor(name:String, type:String, description:String, editoreditorSetup:Function(editor:Element))
 Registers an editor called `name` for a given ot `type` with a `description`. The `editorSetup` function should load the editor and append any DOM elements as children of the element passed as `editor`. It should return a promise that resolves to a gulf Document. Editor names must be unique and are used for displaying options together with `description`s.
 
 ### settings
-Package: `hive-ui`
+Package: [`hive-ui`](https://github.com/hivejs/hive-ui)
 
 #### settings.action_setForDocument(map:Object): SETTINGS_SET_FOR_DOCUMENT
 #### settings.getForDocument(key)
