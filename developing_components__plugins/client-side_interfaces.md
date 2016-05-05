@@ -255,8 +255,8 @@ Emitted after the user was successfully authenticated.
 #### session.onceLoggedIn(cb:Function)
 This is a helper function that allows you defer code until the user logged in. If the user is logged in already at call time, this will call the callback immediately using `setImmediate`.
 
-#### session.onceStreamLoaded(cb:Function)
-This is a helper function that allows you defer code until the stream is loaded. If the stream is loaded already at call time, this will call the callback immediately using `setImmediate`.
+#### session.onceStreamConnected(cb:Function)
+This is a helper function that allows you defer code until the stream is connected. If the stream is already connected at the time of calling this, it will call the callback immediately using `setImmediate`.
 
 
 ### api
@@ -306,13 +306,3 @@ This is an event emitter. Use it to display your own user settings by adding vir
 This is an event emitter. Use it to display your own document settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
 #### settings.onRenderUserDocumentSettings:(children:Array)
 This is an event emitter Use it to display your own personalized document settings by adding virtual-dom trees to `children`. Save changes by dispatchting the above actions.
-
-### importexport
-Package: `hive-ui`
-
-#### action_toggleExportDropdown() : IMPORTEXPORT_TOGGLE_EXPORT_DROPDOWN
-#### action_export(exportType:String) : IMPORTEXPORT_EXPORTED
-#### action_exporting(type:String)
-#### action_toggleImportDropdown() : IMPORTEXPORT_TOGGLE_IMPORT_DROPDOWN
-#### action_import(files:FileList) : IMPORTEXPORT_IMPORTED
-#### action_importing(filename:String) : IMPORTEXPORT_IMPORTING
