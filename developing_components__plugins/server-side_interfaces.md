@@ -128,6 +128,9 @@ This is a router as implemented by koa-router.
 
 #### http.router.VERB(path:String, fn:Generator)
 
+#### http.server
+The http server instance that will be bound to the port and will call the koa instance.
+
 ### logger
 Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
