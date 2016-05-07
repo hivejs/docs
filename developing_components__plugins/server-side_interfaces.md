@@ -10,6 +10,17 @@ Package: [`hive-ui`](https://github.com/hivejs/hive-ui)
 #### ui.registerModule(file:String)
 register a file that must adhere to the component definition spec and will be loaded on the client-side.
 
+#### ui.registerJavascript(file:String)
+register a file that will be processed by browserify as an entry file (meaning it will be run when the bundle is loaded as if it was included separately with a script tag). The advantage is that you can utilize browserify's magic and `require` your files like normal. If your module is very large and not always needed, you should use `ui.externalizeModule` (for modules that use `module.exports`) or include it manually by registering a static dir (see below) to expose the file. In both cases you can make sure to load the file on the client only once by using `ui.requireScript`.
+
+#### ui.externalizeModule(moduleName:String)
+puts the given module in a separate bundle, available in `/statis/build/<moduleName>.js`. After loading that bundle with `ui.requireScript` on the client, you can require the module as usual. Magic!
+
+#### ui.registerExternalModule(moduleName:String)
+exclude a module from the main javascript bundle (or rather declare it to be external). If you want to be able to require it, bundle it yourself with `browserify#require`, expose it on the server by registering a static dir and load it on the client with `ui.requireScript`.
+
+Usually you can use `externalizeModule`, which does all that for you, but sometimes you have only a pre-built bundle available -- that's when this method comes in handy.
+
 #### ui.registerStaticDir(dir:String, [options])
 register `dir`, a sub-directory of your component, which will be available at `/static/hive-component-name/path/to/dir`. The `options` will be passed to koa-static-cache.
 
@@ -70,7 +81,7 @@ Registers a command `fn` with the name `cmd`. This won't throw if the command ha
 Executes a registered command.
 
 #### cli.dispatch(argv:[String])
-Inspects the command line arguments passed via `argv` and calls the correspondinhg subcommand with the *whole* `argv`, e.g. if you run `hive test --foo` it will call command `"test"` with `argv` set to `["node",".../hive","test","--foo"]`.
+Inspects the command line arguments passed via `argv` and calls the corresponding subcommand with the *whole* `argv`, e.g. if you run `hive test --foo` it will call command `"test"` with `argv` set to `["node",".../hive","test","--foo"]`.
 
 The main command is the empty string `""` and is reserved for hive-services, but you can override that by registering a new function for the empty command `""`.
 
