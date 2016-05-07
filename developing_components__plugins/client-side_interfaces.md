@@ -227,6 +227,14 @@ This action will replace the state tree with the one you supply. A ROUTE action 
 #### ui.route(action, route:String):Bool|Object
 Use this helper in your middle-ware to listen for routes. You can specify a route in the familiar express style: `/users/:user`. If action is a ROUTE and the route matches the path in the action's payload, this will return the parameters as an Object, otherwise it'll return `false`.
 
+#### ui.exitRoute(store, action, route:String):Bool
+This is the complementary function to `ui.route`: If the user navigates away from the given route, this will return true.
+
+#### ui.requireScript(url:String):Promise
+If the script at that URL has not been loaded with this function, yet, this will load it (by appending a script tag with the given URL to the HTML body) and resolve the returned promise once it's loaded. Otherwise the promise will be rosolved immediately.
+
+*Note that this function does only check for scripts that have been loaded with the same mechanism. It won't prevent a script from being loaded twice, if you insert a script tag yourself the first time.*
+
 ### session
 Package: [`hive-ui`](https://github.com/hivejs/hive-ui)
 
