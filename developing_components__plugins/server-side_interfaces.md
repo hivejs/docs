@@ -212,6 +212,9 @@ Called before initializing waterline. You may want to use this to load your own 
 
 This is called before the models are created with `Waterline.Collection.extend` and loaded with `waterline#loadCollection`, so it is convenient for you to add your own attributes and models here.
 
+### http:bindMiddleware
+This hook is called when the http service is started, before the koa request handler is compiled and after the standard middleware has been added (before the router middleware, though, otherwise it would be pointless). Usually you will want to wait for this hook until you register your koa middleware. In rare cases, when you want to ensure your middleware is run first you can register your middleware right when your hive component is loaded.
+
 ### http:listening (server:HttpServer)
  * `server` the http server object
 
@@ -222,8 +225,3 @@ This hook is called once the server is listening. It is used for example in `hiv
 
 When this hook is called, the user is already authenticated.
 It is not recommended to use this method unless you know what you are doing. Use broadcast channels instead.
-
-### interface-stream:setup (primus:Primus)
- * `primus` A primus server. See https://github.com/primus/primus
-
-This is used in hive-ui to provide the client-side with the primus client code using `primus.library()`.
