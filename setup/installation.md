@@ -102,7 +102,7 @@ These are just the mandatory settings plus the settings for hive-broadcast-smoke
 Now you can start hive.js by running
 
 ```
-$ NODE_ENV=test hive -s http -s queue
+$ NODE_ENV=test hive -s orm -s http -s queue
 ```
 (This will start a hive process with the http server and the queue service. When spinning up additional workers, you shouldn't start the queue service, so leave out `-s queue` in that case.)
 
