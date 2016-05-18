@@ -54,6 +54,25 @@ Package: [`hive-core`](https://github.com/hivejs/hive-core)
 #### authToken.sign*(payload:Object)
 returns a jsonwebtoken from `payload` with the secret set in the config file, where `payload` should be an object containing a user `{user: <userId>}`, and optionally some scopes. `hive-auth-token` also registers a matching `token` authentication provider (see [hive-auth-token]()).
 
+### importexport
+Package: `hive-core`
+
+#### importexport.registerExportProvider(type:string, exportType:string, provider:GeneratorFunction(document, snapshot):Buffer|string)
+* `type` is the ot type of the document as registered with the ot provider
+* `exportType` is the mime type of the exported file
+The registered export provider takes the `document`and `snapshot` objects and returns the exported file.
+
+#### importexport.export*(snapshotId:string, exportType:string):Buffer|string
+Checks if an export provider for the given exportType exists and calls it, returning the file contents.
+
+#### importexport.registerImportProvider(type:string, importType:string, provider:GeneratorFunction(document, user, data))
+* `type` is the ot type of the document as registered with the ot provider
+* `importType` is the mime type of the file that is being imported
+The registered import provider takes the `document` object and the `user` object (of the user on whose behalf the import is carried out) and imports the file contents passed as `data`.
+
+#### importexport.import*(documentId:Number, user:Object, importType:string, data:Buffer|string)
+Checks if an import handler for the given import type is registered andd calls it.
+
 ### broadcast
 Package: [`hive-core`](https://github.com/hivejs/hive-core)
 
