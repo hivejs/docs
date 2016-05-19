@@ -8,6 +8,12 @@ All methods will return a 401 status code if you failed to provide an access  to
 ## Methods
 For the full set of Allowed methods, refer to the [JSON API specification v1.0](https://jsonapi.org). Below follow Hive-specific additions and special cases.
 
+### Filtering collections
+The REST API interface provides full query support for filtering collections via [waterline's query language](https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md), which should be easy to use if you have worked with MongoDB or similar databases / abstraction layers before.
+```
+GET /api/v1/documents?filter[title][contains]=foo
+```
+
 ### Change a document's contents
 ```
 POST /api/v1/documents/2/snapshots
@@ -23,6 +29,7 @@ POST /api/v1/documents/2/snapshots
 
 ```
 POST /api/v1/documents/2/import
+...
 ```
 ```
 200 OK
