@@ -56,54 +56,20 @@ $ cd node_modules; find . -name .babelrc | grep -v packager | xargs rm
 ```
 
 ## Adjust the settings
-These are just the mandatory settings plus the settings for hive-broadcast-smokesignal.
-```js
-{
-  "ui": {
-    "baseURL": "http://localhost:1235"
-  }
-, "orm": {
-    "adapters": [
-      "sails-memory"
-    ]
-  , "connections": {
-      "default": { "adapter": "sails-memory" }
-    }
-  }
-, "http": {
-    "port": 1235
-  }
-, "authToken": {
-    "secret": "shhh"
-  }
-, "oauth": {
-    "secret": "shhhh"
-  }
-, "queue": {
-    "port": 12351
-  , "address": "127.0.0.1"
-  }
-, "broadcast-smokesignal": {
-    "networkMask": "192.168.2.1/255.255.255.0"
-  , "port": 12352
-  , "seeds": [
-      {"address":"192.168.2.100", "port":12352}
-    ]
-  }
-, "logger": {
-    "appenders": [
-      { "type": "console" }
-    ]
-  }
-}
-```
+Open `config/default.json` in the editor of your choice and adjust the settings as you please. It is also possible to define settings only for specific environments by adding them to the respecitve config file in the config folder (`development.json`, `test.json` and `production.json`).
 
 ## Run it
+First, you need to build the code and translations that are needed on the client-side:
+
+```
+hive ui-build
+```
+
 Now you can start hive.js by running
 
 ```
 $ NODE_ENV=test hive -s orm -s http -s queue
 ```
-(This will start a hive process with the http server and the queue service. When spinning up additional workers, you shouldn't start the queue service, so leave out `-s queue` in that case.)
+(This will start a hive process with a database connection, the http server and the queue service. When spinning up additional workers, you shouldn't start the queue service, so leave out `-s queue` in that case.)
 
 Now check out `http://localhost:1235/documents/1` in your browser. If all is well, you will be asked to authenticate. Afterwards you'll be notified that the document you're trying to access doesn't exist. So far, so good.
