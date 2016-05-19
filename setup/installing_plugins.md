@@ -29,7 +29,17 @@ A plugin for the editor page that allows users to see who else is viewing the cu
 
 Install with `npm i hive-plugin-presence`
 
+## hive-plugin-import
+A plugin for the editor page that allows users to import files into the current document.
+
+Install with `npm i hive-plugin-import`
+
+## hive-plugin-export
+A plugin for the editor page that allows users to export and download the current document in various file formats.
+
+Install with `npm i hive-plugin-export`
+
 ## hive-plugin-my-documents
-A plugin that adds owner and read/write privileges and a management page for your documents. Currently still very basic.
+A plugin that establishes document ownership and allows owners to manage read/write privileges and adds a management page for your documents. Currently, this is the only way to create new documents.
 
 Install with `npm i hive-plugin-my-documents`
