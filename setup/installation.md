@@ -84,3 +84,5 @@ On windows, use:
 (This will start a hive process with a database connection, the http server and the queue service. When spinning up additional workers, you shouldn't start the queue service, so leave out `-s queue` in that case.)
 
 Now check out `http://localhost:1235/documents/1` in your browser. If all is well, you will be asked to authenticate. Afterwards you'll be notified that the document you're trying to access doesn't exist. So far, so good.
+
+New documents can be created [programatically with the REST API](http://docs.hivejs.org/developing_peripherals/interface_rest_api.html) or, after installing the my-documents plugin, via the GUI (see 'Installing plugins').
