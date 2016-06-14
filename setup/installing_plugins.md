@@ -4,6 +4,8 @@ Currently there is only a limited number of plugins available, as the core API i
 
 The following is a list of the "official" plugins.
 
+**Please note** that as of v0.8 you need to re-run `hive ui-build` after you install or remove a plugin in addition to re-starting the hive server for the changes to take effect.
+
 ## hive-plugin-authorship-markers-ckeditor
 A plugin for the CKeditor editor package that adds a thin pane to the left of the editing area where sections are attributed to authors, indicated by colored lines. Integrates with hive-plugin-presence to display users' colors and allow changing your own color.
 
