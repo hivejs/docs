@@ -3,8 +3,8 @@
 
 ## Pre-requisites
 To install hive.js on your machine you'll need to have installed the following:
- * [node.js](http://nodejs.org) v5 (recommended; not tested in v6, yet, although unlikely to fail severely)
- * [npm](http://npmjs.org) v3 (usually bundled with node.js)
+ * [node.js](http://nodejs.org) v5 (recommended version; not tested in v6, yet, although unlikely to fail severely)
+ * [npm](http://npmjs.org) v3 (the package manager for node.js; usually comes bundled with node.js)
 
 If you have installed the pre-requisites, install the hive command line utility on your system with the following command:
 ```
@@ -27,7 +27,7 @@ Hive.js is scalable. This means that you can spin up any number of workers to ha
  * hive-broadcast-memory (simple stub that only works when you have just one worker)
  * hive-broadcast-smokesignal (sets up a peer-to-peer network through which the workers will communicate)
 
-hive-init(1) will ask you which one you want. `memory` should be fine for most smaller installations. In any case, you can switch to a different transport later on.
+hive-init(1) will ask you which one you want. `memory` should be fine for most smaller installations. In any case, you can switch to a different transport later on, by uninstalling the current one and installing a new one, both using npm.
 
 ### Choose one or more editors / document types
 Currently available editors are
@@ -37,7 +37,7 @@ Currently available editors are
  * `hive-editor-html-ckeditor`: Collaborate on HTML documents using [ckeditor](http://ckeditor.com/).
  * `hive-editor-svg-method-draw`: Collaborate on SVG images using [MethodDraw](https://github.com/duopixel/Method-Draw)
 
-hive-init(1) will ask you which ones you want to install. You should install at least one.
+hive-init(1) will ask you which ones you want to install. You should install at least one. Like everything else, you can easily change this (install new editors or remove installed ones, both using npm) after finishing hive-init(1).
 
 ## Install an auth provider
 Currently there are two auth providers:
@@ -45,7 +45,7 @@ Currently there are two auth providers:
 * `hive-auth-github`
 * `hive-auth-guest`
 
-Both implement allow-all authorization. Which means you don't want to use them in production (which you shouldn't use hive for, yet, anyway). That being sad, especially hive-auth-guest works splendidly for testing. You can install it by running `npm i hive-auth-guest` in your instance directory.
+Both implement allow-all authorization. Which means you don't want to use them in production (which you shouldn't use hive for, yet, anyway). That being sad, especially hive-auth-guest works splendidly for testing. You can install it by running `npm install hive-auth-guest` in your instance directory.
 
 ## Fix babel
 Currently a lot of modules used by hive on the client-side depend on an outdated version of the babel tool, but work with the latest version if you remove their `.babelrc` files.
