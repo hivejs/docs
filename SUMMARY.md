@@ -16,4 +16,3 @@
    * [Client-side interfaces](developing_components__plugins/client-side_interfaces.md)
    * [Localization](developing_components__plugins/localization.md)
    * [FAQ](developing_components__plugins/faq.md)
-
