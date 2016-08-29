@@ -7,3 +7,7 @@ Hive allows you to tweak settings for different environments by adding them to t
 On Linux/Mac, use e.g. `export NODE_ENV=development`, while windows users do `set NODE_ENV=development`
 
 You can also inject settings via env variables in the `hive_` namespace, while `_` (underscore) is the hierarchy delimiter, e.g. to dynamically change the port the http server listens on, set `hive_http_port` to `1337`.
+
+## Settings
+### Logging
+WIP
