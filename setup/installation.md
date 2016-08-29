@@ -19,7 +19,9 @@ hive init
 ```
 
 ### Choose a database backend
-Hive.js uses the [waterline](https://github.com/balderdashy/waterline) ORM, which supports a variety of database backends. You can [pick one of these](https://github.com/balderdashy/waterline-docs#supported-adapters) (hive-init(1) will ask you and help you configure it). `sails-memory` is good for testing purposes, but if you're headed for production, you'll want a real database like mysql or postgresql, as memory will loose all your data after stopping hive.js. Don't use `disk`, as it doesn't support binary data.
+Hive.js uses the [waterline](https://github.com/balderdashy/waterline) ORM, which supports a variety of database backends. You can [pick one of these](https://github.com/balderdashy/waterline-docs#supported-adapters) (hive-init(1) will ask you and help you configure it). `sails-memory` is good for testing purposes, but if you're headed for production, you'll want a real database like mysql or postgresql, as `sails-memory` will loose all your data when you shutdown hive.js. Don't use `disk`, as it doesn't support binary data, at the moment.
+
+If you haven't already, you need to create a new database for hive.js, tables will be created automatically.
 
 ### Choose a broadcast transport
 Hive.js is scalable. This means that you can spin up any number of workers to handle the load. However, these workers need to communicate and that's when broadcast transports come into play. Currently available are:
@@ -37,7 +39,7 @@ Currently available editors are
  * `hive-editor-html-ckeditor`: Collaborate on HTML documents using [ckeditor](http://ckeditor.com/).
  * `hive-editor-svg-method-draw`: Collaborate on SVG images using [MethodDraw](https://github.com/duopixel/Method-Draw)
 
-hive-init(1) will ask you which ones you want to install. You should install at least one. Like everything else, you can easily change this (install new editors or remove installed ones, both using npm) after finishing hive-init(1).
+hive-init(1) will ask you which ones you want to install. You should install at least one, as without an editor you won't be able to edit anything (makes sense?). Like everything else, you can easily change this (install new editors or remove installed ones, both using npm) after finishing hive-init(1).
 
 ## Install an auth provider
 Currently there are two auth providers:
@@ -64,7 +66,7 @@ Open `config/default.json` in the editor of your choice and adjust the settings 
 ## Run it
 Phew. All set. Now, how do we get this thing started?
 
-First, you need to build the code and translations that are needed on the client-side:
+First, you need to build the code and translations that are needed on the client-side (you'll have to do this whenever you've changed the setup, i.e. when you've installed a new plugin, changed the config, etc.):
 
 ```
 hive ui-build
