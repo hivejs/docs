@@ -61,7 +61,7 @@ $ cd node_modules; find . -name .babelrc | grep -v packager | xargs rm
 (Note: This doesn't work on windows. I'm not a good batch coder. If you are -- any contributions are greatly appreciated. Otherwise, you'll have to dig through the directories: Currently babel is [only enabled](https://github.com/hivejs/hive-ui/blob/master/index.js#L42) for modules that start with  `redux`, `flux` or  `reducers`. Go through all directories that start with these words and delete the file called `.babelrc`.)
 
 ## Adjust the settings
-Open `config/default.json` in the editor of your choice and adjust the settings as you please. It is also possible to define settings only for specific environments by adding them to the respecitve config file in the config folder (`development.json`, `test.json` and `production.json`).
+Open `config/default.json` in the editor of your choice and adjust the settings as you please.
 
 ## Run it
 Phew. All set. Now, how do we get this thing started?

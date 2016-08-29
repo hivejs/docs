@@ -5,6 +5,7 @@
 * [Setup](setup/README.md)
    * [Installation](setup/installation.md)
    * [Installing plugins](setup/installing_plugins.md)
+   * [Configuration](setup/configuration.md)
 * [Developing Peripherals](developing_peripherals/README.md)
    * [Data model](developing_peripherals/data_model.md)
    * [Authentication/Authorization](developing_peripherals/auth.md)
