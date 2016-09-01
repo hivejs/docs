@@ -3,9 +3,9 @@
 ## What is Hive.js?
 Hive.js is a collaboration server and a web application that allows you to collaborate with others on any document in real-time. Examples of applications that could be build with Hive.js is [Google Docs](https://docs.google.com) and [Cloud 9 Code Editor (collaborative coding)](https://c9.io/).
 
-See what the community have built by visiting the [User examples](user_examples/README.md) page.
+As it's fairly new, nobody has built anything with hive.js, yet. Be the first and let the world know by adding it to the "In the wild" list (TBD).
 
-Or, get going by visiting the [Get started](setup/README.md) page.
+Get going by visiting the [Get started](setup/README.md) page.
 
 ## A book created for you
 This book aims to provide you the following help:
