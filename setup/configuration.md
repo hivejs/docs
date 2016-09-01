@@ -24,10 +24,11 @@ server.
 ## Overriding config using environment variables
 You can inject settings via environment variables in the `hive_` namespace. `_`
 is used as the hierarchy delimiter, e.g. to change the port the http server
-listens on you would set `HIVE_HTTP_PORT` to `1337`.
+listens on you would set `hive_http_port` to `1337`. Notice that we are not
+case-insensitive, thus expecting lower case.
 
 ### Logging (WIP)
 Logging is done using the `log4js-node` package. By default, everything logged
-is being redirected to `STDOUT`. If you need to connect your logger to another
-way, you can see all the different ways of doing the [Official node4js-node wiki page
+is being redirected to `STDOUT`. If you need to connect your logger in another
+way, please check out the [Official node4js-node wiki page
 on Appenders](https://github.com/nomiddlename/log4js-node/wiki/Appenders).
